@@ -8,6 +8,12 @@ return [
             'create' => 'Create Category',
             'edit' => 'Edit Category',
         ],
+        'product' => [
+            'product' => 'Product',
+            'index' => 'Products',
+            'create' => 'Create Product',
+            'edit' => 'Edit Product',
+        ],
         'logout' => 'Logout'
     ],
     'messages' => [
@@ -19,16 +25,27 @@ return [
                 'created' => 'Category created successfully.',
                 'updated' => 'Category updated successfully.',
                 'deleted' => 'Category deleted successfully.',
-            ]
+            ],
+            'product' => [
+                'created' => 'Product created successfully.',
+                'updated' => 'Product updated successfully.',
+                'deleted' => 'Product deleted successfully.',
+            ],
         ]
     ],
     'content' => [
         'category_details' => 'Category Details',
+        'product_details' => 'Product Details',
     ],
     'fields' => [
         'category' => [
             'name' => 'Category Name',
-        ]
+        ],
+        'product' => [
+            'name' => 'Product Name',
+            'price' => 'Price',
+            'category' => 'Category',
+        ],
     ],
     'buttons' => [
         'create' => 'Create',

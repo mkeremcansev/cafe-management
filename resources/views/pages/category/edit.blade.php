@@ -19,6 +19,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-column">
                             <div class="form-group">
+                                <label class="form-label">@lang('words.fields.category.name')</label>
                                 <input class="form-control" placeholder="@lang('words.fields.category.name')" type="text" name="name" required value="{{ $category->name }}">
                             </div>
                             <button class="btn ripple btn-primary" type="submit">@lang('words.buttons.update')</button>

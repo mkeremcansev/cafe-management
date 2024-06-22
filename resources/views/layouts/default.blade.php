@@ -47,6 +47,9 @@
 <!-- JQUERY JS -->
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 
+<!-- money JS -->
+<script src="{{ asset('assets/plugins/money/jquery.masknumber.js') }}"></script>
+
 <!-- BOOTSTRAP JS -->
 <script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>

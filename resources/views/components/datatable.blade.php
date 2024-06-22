@@ -41,7 +41,7 @@
                         <thead>
                         <tr>
                             @foreach($columns as $column)
-                                <th class="wd-15p border-bottom-0">@lang('words.fields.'.$table.'.'.$column)</th>
+                                <th class="wd-15p border-bottom-0">@lang('words.fields.'.$table.'.'.get_datatables_column_last_column($column))</th>
                             @endforeach
                             <th class="border-bottom-0" width="10">@lang('words.buttons.actions')</th>
                         </tr>
@@ -50,10 +50,11 @@
                         @foreach($collection as $builder)
                             <tr>
                                 @foreach($columns as $column)
-                                    <td>{{ $builder->$column }}</td>
+                                    <td>{{ get_datatables_column_relation($builder, split_datatables_column_relation(columnWithRelation: $column)) }}</td>
                                 @endforeach
                                 <td>
-                                    <a href="{{ route($routeNamePrefix.'.edit', $builder->id) }}" class="btn btn-radius btn-warning">
+                                    <a href="{{ route($routeNamePrefix.'.edit', $builder->id) }}"
+                                       class="btn btn-radius btn-warning">
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                     <a class="modal-effect btn btn-radius btn-danger delete-modal-open"
@@ -84,7 +85,8 @@
                                 @method('DELETE')
                                 <div class="modal-footer">
                                     <button class="btn btn-danger" type="submit">@lang('words.buttons.delete')</button>
-                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">@lang('words.buttons.close')</button>
+                                    <button type="button" class="btn btn-light"
+                                            data-bs-dismiss="modal">@lang('words.buttons.close')</button>
                                 </div>
                             </form>
 
