@@ -2,13 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-if (!function_exists('clean_masked_money')) {
+if (! function_exists('clean_masked_money')) {
     /**
      * Clean masked money.
-     *
-     * @param string $maskedMoney
-     *
-     * @return string
      */
     function clean_masked_money(string $maskedMoney): string
     {
@@ -16,7 +12,7 @@ if (!function_exists('clean_masked_money')) {
     }
 }
 
-if (!function_exists('split_datatables_column_relation')) {
+if (! function_exists('split_datatables_column_relation')) {
     function split_datatables_column_relation(string $columnWithRelation): array|string
     {
         $seperated = explode('.', $columnWithRelation);
@@ -29,14 +25,14 @@ if (!function_exists('split_datatables_column_relation')) {
 
             return [
                 'relation' => $relation,
-                'column' => $nested
+                'column' => $nested,
             ];
         }
 
         return $columnWithRelation;
     }
 }
-if (!function_exists('get_datatables_column_relation')) {
+if (! function_exists('get_datatables_column_relation')) {
     function get_datatables_column_relation(Model|string $builder, array|string $columns): string
     {
         if (is_array($columns)) {
@@ -50,7 +46,7 @@ if (!function_exists('get_datatables_column_relation')) {
     }
 }
 
-if (!function_exists('get_datatables_column_last_relation')) {
+if (! function_exists('get_datatables_column_last_relation')) {
     function get_datatables_column_last_relation($columnData, $previousRelation = null): string
     {
         if (is_array($columnData) && isset($columnData['column'])) {
@@ -61,7 +57,7 @@ if (!function_exists('get_datatables_column_last_relation')) {
     }
 }
 
-if (!function_exists('get_datatables_relational_column_name')) {
+if (! function_exists('get_datatables_relational_column_name')) {
     function get_datatables_column_last_column(string $column): string
     {
         $columnData = split_datatables_column_relation($column);

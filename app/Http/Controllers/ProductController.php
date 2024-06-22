@@ -11,9 +11,7 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function __construct(public Product $product, public Category $category)
-    {
-    }
+    public function __construct(public Product $product, public Category $category) {}
 
     /**
      * Display a listing of the resource.

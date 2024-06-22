@@ -16,6 +16,7 @@ class Datatable extends Component
     public string $table;
 
     public string $routeNamePrefix;
+
     /**
      * Create a new component instance.
      */

@@ -31,7 +31,7 @@ class UpdateProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'price' => (int) clean_masked_money($this->price)
+            'price' => (int) clean_masked_money($this->price),
         ]);
     }
 }

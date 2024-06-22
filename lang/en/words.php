@@ -1,4 +1,5 @@
 <?php
+
 return [
     'menu' => [
         'home' => 'Home',
@@ -14,11 +15,11 @@ return [
             'create' => 'Create Product',
             'edit' => 'Edit Product',
         ],
-        'logout' => 'Logout'
+        'logout' => 'Logout',
     ],
     'messages' => [
         'errors' => [
-            'credentials' => 'The provided credentials do not match our records.'
+            'credentials' => 'The provided credentials do not match our records.',
         ],
         'success' => [
             'category' => [
@@ -31,7 +32,7 @@ return [
                 'updated' => 'Product updated successfully.',
                 'deleted' => 'Product deleted successfully.',
             ],
-        ]
+        ],
     ],
     'content' => [
         'category_details' => 'Category Details',

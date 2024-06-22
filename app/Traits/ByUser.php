@@ -2,8 +2,6 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
-
 trait ByUser
 {
     public static function bootByUser(): void

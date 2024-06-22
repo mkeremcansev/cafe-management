@@ -9,9 +9,7 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function __construct(public Category $category)
-    {
-    }
+    public function __construct(public Category $category) {}
 
     /**
      * Display a listing of the resource.
