@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\WithSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends BaseOwnableModel
 {
@@ -15,4 +16,9 @@ class Category extends BaseOwnableModel
         'slug',
         'user_id',
     ];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }

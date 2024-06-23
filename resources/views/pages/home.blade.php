@@ -117,4 +117,24 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="m-5">
+            <h1 class="text-center">Masalar</h1>
+        </div>
+        @foreach($tables as $table)
+            <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
+                <div class="card text-white bg-{{ get_table_status_colors($table->status) }} card-collapsed">
+                    <div class="card-header border-{{ get_table_status_colors($table->status) }}">
+                        <h3 class="card-title"><a href="{{ route('dashboard.tables.show', $table->id) }}" class="text-white">{{ $table->name }}</a></h3>
+                        <div class="card-options">
+                            <a href="#" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 @endsection

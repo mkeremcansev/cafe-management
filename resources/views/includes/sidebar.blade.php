@@ -37,6 +37,16 @@
                         <li><a href="{{ route('dashboard.products.create') }}" class="slide-item">@lang('words.menu.product.create')</a></li>
                     </ul>
                 </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="#">
+                        <i class="fa fa-table side-menu__icon" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-home" aria-label="fa fa-home"></i>
+                        <span class="side-menu__label">@lang('words.menu.table.table')</span><i class="angle fa fa-angle-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li><a href="{{ route('dashboard.tables.index') }}" class="slide-item">@lang('words.menu.table.index')</a></li>
+                        <li><a href="{{ route('dashboard.tables.create') }}" class="slide-item">@lang('words.menu.table.create')</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

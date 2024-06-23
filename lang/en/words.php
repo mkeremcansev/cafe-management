@@ -15,6 +15,13 @@ return [
             'create' => 'Create Product',
             'edit' => 'Edit Product',
         ],
+        'table' => [
+            'table' => 'Table',
+            'index' => 'Tables',
+            'create' => 'Create Table',
+            'edit' => 'Edit Table',
+            'show' => 'Table Show',
+        ],
         'logout' => 'Logout',
     ],
     'messages' => [
@@ -32,11 +39,22 @@ return [
                 'updated' => 'Product updated successfully.',
                 'deleted' => 'Product deleted successfully.',
             ],
+            'table' => [
+                'created' => 'Table created successfully.',
+                'updated' => 'Table updated successfully.',
+                'deleted' => 'Table deleted successfully.',
+            ],
+            'cart' => [
+                'created' => 'Cart created successfully.',
+                'updated' => 'Cart updated successfully.',
+                'deleted' => 'Cart deleted successfully.',
+            ],
         ],
     ],
     'content' => [
         'category_details' => 'Category Details',
         'product_details' => 'Product Details',
+        'table_details' => 'Table Details',
     ],
     'fields' => [
         'category' => [
@@ -46,6 +64,12 @@ return [
             'name' => 'Product Name',
             'price' => 'Price',
             'category' => 'Category',
+        ],
+        'table' => [
+            'name' => 'Table Name',
+        ],
+        'cart' => [
+            'quantity' => 'Quantity',
         ],
     ],
     'buttons' => [

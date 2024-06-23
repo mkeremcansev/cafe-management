@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\TableStatus;
 use Illuminate\Database\Eloquent\Model;
 
 if (! function_exists('clean_masked_money')) {
@@ -67,5 +68,16 @@ if (! function_exists('get_datatables_relational_column_name')) {
         }
 
         return $column;
+    }
+}
+
+if (! function_exists('get_table_status_colors')) {
+    function get_table_status_colors(TableStatus $tableStatus): string
+    {
+        return match ($tableStatus) {
+            TableStatus::OPEN => 'success',
+            TableStatus::CLOSE => 'danger',
+            TableStatus::COLLECTED => 'primary',
+        };
     }
 }

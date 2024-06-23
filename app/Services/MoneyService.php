@@ -37,7 +37,7 @@ class MoneyService
         );
     }
 
-    public function zero(?Context $context = null): Money
+    public static function zero(?Context $context = null): Money
     {
         return Money::zero(
             currency: CurrencyCode::TRY->value,
