@@ -22,7 +22,7 @@
                                 <label class="form-label">@lang('words.fields.product.category')</label>
                                 <select class="form-control select2-show-search form-select"
                                         data-placeholder="@lang('words.fields.product.category')" name="category_id">
-                                    <option label="Choose one"></option>
+                                    <option label="@lang('words.inputs.choose_one')"></option>
                                     @foreach($categories as $category)
                                         <option
                                             @selected($product->category_id === $category->id) value="{{ $category->id }}">{{ $category->name }}</option>

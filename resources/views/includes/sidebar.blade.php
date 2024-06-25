@@ -47,6 +47,12 @@
                         <li><a href="{{ route('dashboard.tables.create') }}" class="slide-item">@lang('words.menu.table.create')</a></li>
                     </ul>
                 </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{ route('dashboard.reports') }}">
+                        <i class="fa fa-area-chart side-menu__icon" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-home" aria-label="fa fa-home"></i>
+                        <span class="side-menu__label">@lang('words.menu.report.index')</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -28,4 +28,9 @@ class TableState extends BaseOwnableModel
     {
         return $this->hasMany(Cart::class);
     }
+
+    public function collections(): HasMany
+    {
+        return $this->hasMany(Collection::class);
+    }
 }

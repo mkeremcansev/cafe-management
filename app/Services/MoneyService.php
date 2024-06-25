@@ -18,7 +18,7 @@ class MoneyService
     ): Money {
         return Money::of(
             amount: $amount,
-            currency: CurrencyCode::TRY->value,
+            currency: CurrencyCode::from(config('app.currency'))->value,
             context: $context ?? new CustomContext(2),
             roundingMode: $roundingMode
         );
@@ -31,7 +31,7 @@ class MoneyService
     ): Money {
         return Money::ofMinor(
             minorAmount: $minorAmount,
-            currency: CurrencyCode::TRY->value,
+            currency: CurrencyCode::from(config('app.currency'))->value,
             context: $context ?? new CustomContext(2),
             roundingMode: $roundingMode
         );
@@ -40,7 +40,7 @@ class MoneyService
     public static function zero(?Context $context = null): Money
     {
         return Money::zero(
-            currency: CurrencyCode::TRY->value,
+            currency: CurrencyCode::from(config('app.currency'))->value,
             context: $context ?? new CustomContext(2),
         );
     }

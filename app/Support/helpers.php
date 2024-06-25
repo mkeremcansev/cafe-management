@@ -2,6 +2,7 @@
 
 use App\Enums\TableStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 if (! function_exists('clean_masked_money')) {
     /**
@@ -79,5 +80,32 @@ if (! function_exists('get_table_status_colors')) {
             TableStatus::CLOSE => 'danger',
             TableStatus::COLLECTED => 'primary',
         };
+    }
+}
+
+if (! function_exists('get_months_by_current_year')){
+    function get_months_by_current_year($upToTheCurrentMonth = false): array
+    {
+        $currentYear = now()->year;
+        $currentMonth = now()->month;
+        $months = [];
+
+        if ($upToTheCurrentMonth) {
+            for ($month = 1; $month <= $currentMonth; $month++) {
+                $months[] = [
+                    'month' => Carbon::createFromDate($currentYear, $month, 1)->format('F'),
+                    'value' => $month,
+                ];
+            }
+        } else {
+            for ($month = 1; $month <= 12; $month++) {
+                $months[] = [
+                    'month' => Carbon::createFromDate($currentYear, $month, 1)->format('F'),
+                    'value' => $month,
+                ];
+            }
+        }
+
+        return $months;
     }
 }

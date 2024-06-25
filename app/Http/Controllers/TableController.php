@@ -45,7 +45,7 @@ class TableController extends Controller
      */
     public function show(Table $table)
     {
-        $table->load('carts.product');
+        $table->load('carts.product', 'openState.collections');
 
         return view('pages.table.show')
             ->withTable($table)

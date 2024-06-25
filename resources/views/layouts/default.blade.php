@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}" dir="ltr">
 
 @include('includes.head')
-<body class="ltr app sidebar-mini dark-mode">
+<body class="ltr app sidebar-mini">
 
 <!-- GLOBAL-LOADER -->
 <div id="global-loader">

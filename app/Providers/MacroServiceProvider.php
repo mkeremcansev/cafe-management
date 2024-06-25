@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\MoneyService;
 use Brick\Money\Money;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,12 @@ class MacroServiceProvider extends ServiceProvider
                     fn (Money $sum, int|Money $amount) => $sum->plus($amount instanceof Money ? $amount : MoneyService::ofMinor($amount)),
                     $currency === null ? MoneyService::zero() : Money::zero($currency)
                 );
+        });
+
+        Builder::macro('moneySum', function (?string $moneyField = null, ?string $currency = null): Money {
+            return $this
+                ->get()
+                ->moneySum($moneyField, $currency);
         });
     }
 }
