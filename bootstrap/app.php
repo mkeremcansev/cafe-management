@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,12 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //        $middleware->web(append: [
-        //            Authenticate::class,
-        //            RedirectIfAuthenticated::class,
-        //        ]);
-        //        $middleware->redirectGuestsTo('login');
-        //        $middleware->redirectUsersTo('dashboard.home');
+        $middleware->redirectGuestsTo(fn (Request $request) => route('auth.login'));
+        $middleware->redirectUsersTo(fn (Request $request) => route('dashboard.home'));
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

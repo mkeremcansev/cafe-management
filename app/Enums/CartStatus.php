@@ -4,11 +4,10 @@ namespace App\Enums;
 
 use App\Traits\IsEnum;
 
-enum PaymentStatus: int
+enum CartStatus: int
 {
     use IsEnum;
 
     case PENDING = 0;
-    case PARTLY_PAID = 1;
-    case PAID = 2;
+    case COLLECTED = 1;
 }

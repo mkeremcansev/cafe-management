@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
@@ -11,17 +12,21 @@ use App\Http\Controllers\TableController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
-Route::name('auth.')->group(function (Router $router) {
+Route::name('auth.')->middleware('guest')->group(function (Router $router) {
     $router->get('/login', fn () => view('pages.auth.login'))->name('login');
+    $router->get('/register', fn () => view('pages.auth.register'))->name('register');
+    $router->post('/register', [RegisterController::class, 'register'])->name('register');
     $router->post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
-})->middleware('guest');
+});
 
-Route::name('dashboard.')->group(function (Router $router) {
+Route::name('dashboard.')->middleware('auth:web')->group(function (Router $router) {
     $router->get('/', [HomeController::class, 'index'])->name('home');
     $router->get('/reports', [ReportController::class, 'index'])->name('reports');
+    $router->post('/move-table/{table}', [TableController::class, 'move'])->name('move-table');
     $router->resource('/categories', CategoryController::class)->except(['show']);
     $router->resource('/products', ProductController::class)->except(['show']);
     $router->resource('/tables', TableController::class);
     $router->resource('/carts', CartController::class)->only(['store', 'update', 'destroy']);
     $router->resource('/collections', CollectionController::class)->only(['store']);
-})->middleware('auth:web');
+    $router->get('/logout', [LoginController::class, 'logout'])->name('logout');
+});

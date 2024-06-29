@@ -2,12 +2,13 @@
 
 namespace App\Traits;
 
-trait ByUser
+trait ByUserAndCompany
 {
-    public static function bootByUser(): void
+    public static function bootByUserAndCompany(): void
     {
         static::creating(static function ($model) {
             $model->user_id = auth()->id();
+            $model->company_id = auth()->user()->company_id;
         });
     }
 }

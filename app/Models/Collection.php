@@ -17,6 +17,7 @@ class Collection extends BaseOwnableModel
         'method',
         'type',
         'user_id',
+        'company_id',
         'table_state_id',
     ];
 

@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\TableState::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity')->default(1);
+            $table->tinyInteger('status')->default(\App\Enums\CartStatus::PENDING);
+            $table->tinyInteger('is_before_collection')->default(0);
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('total_price')->virtualAs('quantity * price');
+            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Company::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\TableState::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

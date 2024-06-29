@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -15,11 +16,22 @@ class LoginController extends Controller
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard.home');
+            return redirect()->route('dashboard.home')->with('success', __('words.messages.success.login'));
         }
 
         return back()->withErrors([
             'error' => __('words.messages.errors.credentials'),
         ]);
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('auth.login')->with('success', __('words.messages.success.logout'));
     }
 }

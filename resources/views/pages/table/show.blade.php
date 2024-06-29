@@ -29,7 +29,12 @@
         <div class="col-xl-7 col-md-12">
             <div class="card cart">
                 <div class="card-header border-bottom">
-                    <h3 class="card-title">@lang('words.content.table_details')</h3>
+                    <h3 class="card-title me-3">@lang('words.content.table_details')</h3>
+                    @if($table->status->is(\App\Enums\TableStatus::OPEN))
+                        <a href="#move-table-modal" data-bs-effect="effect-scale" data-bs-toggle="modal" class="btn btn-success">
+                            @lang('words.buttons.move')
+                        </a>
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -43,13 +48,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($table->carts as $cartItem)
+                            @foreach($table->carts as $cart)
                                 <tr>
-                                    <td>{{ $cartItem->product->name }} ({{ $cartItem->price }})</td>
-                                    <td>{{ $cartItem->total_price }}</td>
-                                    <td class="text-center">{{ $cartItem->quantity }}</td>
-                                    <td class="d-flex">
-                                        <form action="{{ route('dashboard.carts.update', $cartItem->id) }}" method="POST">
+                                    <td>{{ $cart->product->name }} ({{ $cart->price }})</td>
+                                    <td>{{ $cart->total_price }}</td>
+                                    <td class="text-center">{{ $cart->quantity }}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <form action="{{ route('dashboard.carts.update', $cart->id) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="type" value="{{ \App\Enums\CartUpdateType::INCREMENT }}">
@@ -57,8 +62,8 @@
                                                 <i class="icon icon-plus"></i>
                                             </button>
                                         </form>
-                                        @if($table->has_collections === false)
-                                            <form action="{{ route('dashboard.carts.update', $cartItem->id) }}"
+                                        @if($cart->is_before_collection === false)
+                                            <form action="{{ route('dashboard.carts.update', $cart->id) }}"
                                                   method="POST">
                                                 @csrf
                                                 @method('PATCH')
@@ -67,7 +72,7 @@
                                                     <i class="icon icon-minus"></i>
                                                 </button>
                                             </form>
-                                            <form action="{{ route('dashboard.carts.destroy', $cartItem->id) }}" method="POST">
+                                            <form action="{{ route('dashboard.carts.destroy', $cart->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-square btn-danger-light me-1">
@@ -295,6 +300,45 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light"
+                            data-bs-dismiss="modal">@lang('words.buttons.close')</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="move-table-modal">
+        <div class="modal-dialog modal-dialog-centered text-center modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">@lang('words.buttons.move')</h6>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+                        <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ route('dashboard.move-table', $table->id) }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label
+                                        class="form-label">@lang('words.menu.table.table')</label>
+                                    <select class="form-control select2-show-search form-select" data-placeholder="@lang('words.menu.table.table')" name="table_id">
+                                        <option label="@lang('words.inputs.choose_one')"></option>
+                                        @foreach($tablesWithoutCurrent as $tableWithoutCurrent)
+                                            <option value="{{ $tableWithoutCurrent->id }}">
+                                                {{ $tableWithoutCurrent->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary"
+                                        type="submit">@lang('words.buttons.move')</button>
+                            </form>
                         </div>
                     </div>
                 </div>

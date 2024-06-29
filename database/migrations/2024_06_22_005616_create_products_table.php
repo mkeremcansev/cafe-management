@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->unsignedBigInteger('price');
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Company::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Category::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

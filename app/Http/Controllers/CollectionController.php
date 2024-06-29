@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CartStatus;
 use App\Enums\CollectionType;
 use App\Enums\TableStatus;
 use App\Http\Requests\StoreCollectionRequest;
@@ -9,18 +10,17 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Table;
 use App\Services\MoneyService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
 class CollectionController extends Controller
 {
-    public function __construct(public Cart $cart) {
-
-    }
+    public function __construct(public Cart $cart) {}
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCollectionRequest $request)
+    public function store(StoreCollectionRequest $request): RedirectResponse
     {
         $type = $request->type;
         $method = $request->method;
@@ -39,11 +39,13 @@ class CollectionController extends Controller
             $amount = MoneyService::ofMinor($request->amount)->plus($tableState->collections->moneySum('amount'));
 
             if ($amount->isGreaterThan($cartTotalPrice)) {
-                return back()->with('error', __('words.messages.error.high_amount'));
+                return back()->with('error', __('words.messages.error.validations.high_amount'));
             }
 
             if ($amount->isEqualTo($cartTotalPrice)) {
-                $table->carts()->delete();
+                $table->carts()->update([
+                    'carts.status' => CartStatus::COLLECTED,
+                ]);
 
                 $tableState->update([
                     'status' => TableStatus::COLLECTED,
@@ -51,6 +53,10 @@ class CollectionController extends Controller
 
                 $table->closeState()->create();
             }
+
+            $table->carts()->update([
+                'carts.is_before_collection' => true,
+            ]);
 
             $tableState->collections()->create([
                 'amount' => $request->amount,
@@ -96,11 +102,13 @@ class CollectionController extends Controller
             if ($totalCollectionAmountWithCollectedAmount->isGreaterThan($cartTotalPrice)) {
                 DB::rollBack();
 
-                return back()->with('error', __('words.messages.error.high_amount'));
+                return back()->with('error', __('words.messages.error.validations.high_amount'));
             }
 
             if ($totalCollectionAmountWithCollectedAmount->isEqualTo($cartTotalPrice)) {
-                $table->carts()->delete();
+                $table->carts()->update([
+                    'carts.status' => CartStatus::COLLECTED,
+                ]);
 
                 $tableState->update([
                     'status' => TableStatus::COLLECTED,
@@ -108,6 +116,10 @@ class CollectionController extends Controller
 
                 $table->closeState()->create();
             }
+
+            $table->carts()->update([
+                'carts.is_before_collection' => true,
+            ]);
 
             $collection = $tableState->collections()->create([
                 'amount' => $totalCollectionAmount->getMinorAmount(),

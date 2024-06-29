@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCollectionDetailRequest;
-use App\Http\Requests\UpdateCollectionDetailRequest;
-use App\Models\CollectionDetail;
+use App\Http\Requests\StoreCompanyRequest;
+use App\Http\Requests\UpdateCompanyRequest;
+use App\Models\Company;
 
-class CollectionDetailController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class CollectionDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCollectionDetailRequest $request)
+    public function store(StoreCompanyRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class CollectionDetailController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CollectionDetail $collectionDetail)
+    public function show(Company $company)
     {
         //
     }
@@ -43,7 +43,7 @@ class CollectionDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CollectionDetail $collectionDetail)
+    public function edit(Company $company)
     {
         //
     }
@@ -51,7 +51,7 @@ class CollectionDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCollectionDetailRequest $request, CollectionDetail $collectionDetail)
+    public function update(UpdateCompanyRequest $request, Company $company)
     {
         //
     }
@@ -59,7 +59,7 @@ class CollectionDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CollectionDetail $collectionDetail)
+    public function destroy(Company $company)
     {
         //
     }

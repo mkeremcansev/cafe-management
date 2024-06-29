@@ -17,6 +17,7 @@ return new class extends Migration
             $table->tinyInteger('method');
             $table->tinyInteger('type');
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Company::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\TableState::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

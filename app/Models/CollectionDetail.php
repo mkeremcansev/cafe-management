@@ -13,6 +13,7 @@ class CollectionDetail extends BaseOwnableModel
         'price',
         'total_price',
         'user_id',
+        'company_id',
         'collection_id',
         'product_id',
     ];

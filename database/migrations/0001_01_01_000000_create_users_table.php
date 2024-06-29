@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_owner')->default(0);
+            $table->foreignIdFor(\App\Models\Company::class)->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -12,6 +12,8 @@ class TableState extends BaseOwnableModel
 
     protected $fillable = [
         'status',
+        'user_id',
+        'company_id',
         'table_id',
     ];
 

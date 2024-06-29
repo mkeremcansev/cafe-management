@@ -9,10 +9,7 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function __construct(public Table $table, public Collection $collection)
-    {
-
-    }
+    public function __construct(public Table $table, public Collection $collection) {}
 
     /**
      * Display a listing of the resource.

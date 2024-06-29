@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('collection_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Collection::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity');
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('total_price');
+            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Company::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Collection::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

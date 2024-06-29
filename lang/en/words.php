@@ -56,6 +56,9 @@ return [
             'collection' => [
                 'created' => 'Collection created successfully.',
             ],
+            'logout' => 'Logout successfully.',
+            'login' => 'Login successfully.',
+            'register' => 'Register successfully.',
         ],
         'error' => [
             'validations' => [
@@ -77,7 +80,10 @@ return [
             'total_sales_amount' => 'Total Sales Amount',
             'last_month_sales_amount' => 'Last Month Sales Amount',
             'last_day_sales_amount' => 'Last Day Sales Amount',
-        ]
+            'month_based_sales_amount' => 'Month Based Sales Amount',
+            'filter_based_sales_amount' => 'Filter Based Sales Amount',
+            'has_no_filter' => 'There is no filter.',
+        ],
     ],
     'fields' => [
         'category' => [
@@ -106,6 +112,22 @@ return [
             'paid_amount' => 'Paid Amount',
             'remaining_amount' => 'Remaining Amount',
         ],
+        'report' => [
+            'start_date' => 'Start Date',
+            'end_date' => 'End Date',
+        ],
+        'company' => [
+            'name' => 'Company Name',
+            'address' => 'Company Address',
+            'phone' => 'Company Phone',
+            'email' => 'Company Email',
+        ],
+        'user' => [
+            'name' => 'User Name',
+            'email' => 'User Email',
+            'password' => 'User Password',
+            'password_confirmation' => 'User Password Confirmation',
+        ],
     ],
     'buttons' => [
         'create' => 'Create',
@@ -117,6 +139,8 @@ return [
         'new_add' => 'Add New',
         'close' => 'Close',
         'collection' => 'Collection',
+        'filter' => 'Filter',
+        'move' => 'Move',
     ],
     'inputs' => [
         'search' => 'Search...',

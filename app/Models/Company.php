@@ -2,24 +2,23 @@
 
 namespace App\Models;
 
-use App\Traits\WithSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Category extends BaseOwnableModel
+class Company extends Model
 {
     use HasFactory;
-    use WithSlug;
 
     protected $fillable = [
         'name',
-        'slug',
-        'user_id',
-        'company_id',
+        'email',
+        'phone',
+        'address',
     ];
 
-    public function products(): HasMany
+    public function users(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(User::class);
     }
 }

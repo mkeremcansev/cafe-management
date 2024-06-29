@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TableStatus;
+use App\Http\Requests\MoveTableRequest;
 use App\Http\Requests\StoreTableRequest;
 use App\Http\Requests\UpdateTableRequest;
 use App\Models\Category;
@@ -47,8 +49,11 @@ class TableController extends Controller
     {
         $table->load('carts.product', 'openState.collections');
 
+        $tablesWithoutCurrent = $this->table->where('id', '!=', $table->id)->get();
+
         return view('pages.table.show')
             ->withTable($table)
+            ->withTablesWithoutCurrent($tablesWithoutCurrent)
             ->withCategories($this->category->with('products')->get());
     }
 
@@ -78,5 +83,36 @@ class TableController extends Controller
         $table->delete();
 
         return back()->with('success', __('words.messages.success.table.deleted'));
+    }
+
+    public function move(MoveTableRequest $request, Table $table): RedirectResponse
+    {
+        $tableState = $table->openState()->first();
+
+        $selectedTable = $this->table->findOrFail($request->table_id);
+
+        $selectedTableState = $selectedTable->closeOrOpenStates()->first();
+
+        if ($selectedTableState->status->isNot(TableStatus::OPEN)) {
+            $selectedTableState->update([
+                'status' => TableStatus::OPEN,
+            ]);
+        }
+
+        $table->carts()->update([
+            'carts.table_state_id' => $selectedTableState->id,
+        ]);
+
+        $tableState?->collections()->update([
+            'table_state_id' => $selectedTableState->id,
+        ]);
+
+        $tableState?->update([
+            'status' => TableStatus::MOVED,
+        ]);
+
+        $table->closeState()->create();
+
+        return redirect()->route('dashboard.tables.show', $selectedTable->id)->with('success', 'Table moved successfully.');
     }
 }

@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Enums\CartStatus;
 use App\Enums\TableStatus;
-use App\Models\Scopes\ByUserScope;
+use App\Models\Scopes\ByCompanyScope;
 use App\Services\MoneyService;
 use App\Traits\WithSlug;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Table extends BaseOwnableModel
@@ -20,6 +22,8 @@ class Table extends BaseOwnableModel
     protected $fillable = [
         'name',
         'slug',
+        'user_id',
+        'company_id',
     ];
 
     public function states(): HasMany
@@ -90,10 +94,11 @@ class Table extends BaseOwnableModel
         );
     }
 
-    public function carts()
+    public function carts(): HasManyThrough
     {
         return $this->hasManyThrough(Cart::class, TableState::class)
-            ->where('table_states.status', 1)
-            ->withoutGlobalScope(ByUserScope::class);
+            ->where('table_states.status', TableStatus::OPEN)
+            ->where('carts.status', CartStatus::PENDING)
+            ->withoutGlobalScope(ByCompanyScope::class);
     }
 }

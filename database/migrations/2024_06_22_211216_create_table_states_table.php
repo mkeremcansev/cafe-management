@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('status')->default(\App\Enums\TableStatus::CLOSE);
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Company::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Table::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

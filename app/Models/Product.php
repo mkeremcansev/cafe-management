@@ -17,6 +17,7 @@ class Product extends BaseOwnableModel
         'slug',
         'price',
         'user_id',
+        'company_id',
         'category_id',
     ];
 

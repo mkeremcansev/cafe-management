@@ -83,7 +83,7 @@ if (! function_exists('get_table_status_colors')) {
     }
 }
 
-if (! function_exists('get_months_by_current_year')){
+if (! function_exists('get_months_by_current_year')) {
     function get_months_by_current_year($upToTheCurrentMonth = false): array
     {
         $currentYear = now()->year;
