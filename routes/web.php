@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\AutoDeployController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
@@ -14,8 +13,6 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-
-Route::post('/auto-deploy', [AutoDeployController::class, 'autoDeploy']);
 
 Route::name('auth.')->middleware('guest')->group(function (Router $router) {
     $router->get('/login', fn () => view('pages.auth.login'))->name('login');

@@ -93,8 +93,6 @@ return [
         'mee.cansev@gmail.com'
     ],
 
-    'auto-deploy-secret' => env('AUTO_DEPLOY_SECRET', 'YLyW4xbmuqQKsGyXqGnjuN5Ak0ifmYR7ZfVKjpiOsJIjigG3vcgiqxfkHZ3Lwhbrp9h9NF6ECfS4Xp02FdRTp4eKUlBiKgsErrqA'),
-
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
