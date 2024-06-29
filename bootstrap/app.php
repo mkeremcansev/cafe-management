@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectGuestsTo(fn (Request $request) => route('auth.login'));
         $middleware->redirectUsersTo(fn (Request $request) => route('dashboard.home'));
+
+        $middleware->alias([
+            'company.secure' => \App\Http\Middleware\CompanySecureMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

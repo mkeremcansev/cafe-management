@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title', __('words.menu.table.show'))
 @push('scripts')
     <script src="{{ asset('assets/plugins/repeater/jquery.repeater.min.js') }}"></script>
     <script>

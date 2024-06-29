@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title', __('words.menu.category.index'))
 @section('content')
     <!-- PAGE-HEADER -->
     <div class="page-header">

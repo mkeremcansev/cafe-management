@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Noa – Bootstrap 5 Admin & Dashboard Template">
-    <meta name="author" content="Spruko Technologies Private Limited">
-    <meta name="keywords"
-          content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
+    <meta name="description" content="Rymark Cafe Management System">
+    <meta name="author" content="Rymark Works">
+    <meta name="keywords" content="cafe, management, cafe-management, cafe-system">
+    <meta name="robots" content="noindex,nofollow">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/brand/favicon.ico') }}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/facivon.png') }}"/>
 
     <!-- TITLE -->
-    <title>Noa – Bootstrap 5 Admin & Dashboard Template</title>
+    <title>{{ config('app.name') }} - @lang('words.menu.register')</title>
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
@@ -42,17 +42,12 @@
 <div class="page">
     <div>
         <!-- CONTAINER OPEN -->
-        <div class="col col-login mx-auto text-center">
-            <a href="index.html" class="text-center">
-                <img src="{{ asset('assets/images/brand/logo.png') }}" class="header-brand-img" alt="">
-            </a>
-        </div>
         <div class="container-login100">
             <div class="wrap-login100 p-0">
                 <div class="card-body">
                     <form class="login100-form validate-form" action="{{ route('auth.register') }}" method="POST">
                         @csrf
-                        <span class="login100-form-title">Register</span>
+                        <span class="login100-form-title">@lang('words.menu.register')</span>
                         <div class="wrap-input100 validate-input">
                             <input class="input100" type="text" name="company_name" placeholder="@lang('words.fields.company.name')">
                             <span class="focus-input100"></span>
@@ -111,9 +106,17 @@
 										</span>
                         </div>
                         <div class="container-login100-form-btn">
-                            <button href="index.html" class="login100-form-btn btn-primary">
-                                Login
+                            <button type="submit" class="login100-form-btn btn-primary">
+                                @lang('words.menu.register')
                             </button>
+                        </div>
+                        <div class="text-center pt-3">
+                            <p class="text-dark mb-0">@lang('words.content.are_u_already_have_a_account')</p>
+                        </div>
+                        <div class="container-login100-form-btn">
+                            <a href="{{ route('auth.login') }}" class="login100-form-btn btn-danger">
+                                @lang('words.menu.login')
+                            </a>
                         </div>
                     </form>
                 </div>

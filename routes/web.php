@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
@@ -28,5 +29,6 @@ Route::name('dashboard.')->middleware('auth:web')->group(function (Router $route
     $router->resource('/tables', TableController::class);
     $router->resource('/carts', CartController::class)->only(['store', 'update', 'destroy']);
     $router->resource('/collections', CollectionController::class)->only(['store']);
+    $router->resource('/companies', CompanyController::class)->only(['edit', 'update'])->middleware('company.secure');
     $router->get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

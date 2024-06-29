@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title', __('words.menu.report.index'))
 @push('scripts')
     <script src="{{ asset('assets/plugins/chart/Chart.bundle.js') }}"></script>
     <script src="{{ asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script>

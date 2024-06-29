@@ -26,7 +26,13 @@ return [
             'report' => 'Report',
             'index' => 'Reports',
         ],
+        'company' => [
+            'company' => 'Company',
+            'edit' => 'Edit Company',
+        ],
         'logout' => 'Logout',
+        'login' => 'Login',
+        'register' => 'Register',
     ],
     'messages' => [
         'errors' => [
@@ -56,6 +62,9 @@ return [
             'collection' => [
                 'created' => 'Collection created successfully.',
             ],
+            'company' => [
+                'updated' => 'Company updated successfully.',
+            ],
             'logout' => 'Logout successfully.',
             'login' => 'Login successfully.',
             'register' => 'Register successfully.',
@@ -67,12 +76,14 @@ return [
                 'product_quantity_greater_than_cart' => 'The quantity you entered is greater than the cart quantity.',
             ],
             'general_error' => 'An error occurred.',
+            'not_allowed_access' => 'You are not allowed to access this page.',
         ],
     ],
     'content' => [
         'category_details' => 'Category Details',
         'product_details' => 'Product Details',
         'table_details' => 'Table Details',
+        'company_details' => 'Company Details',
         'manual_collection' => 'Manuel Collection',
         'product_collection' => 'Product Collection',
         'analysis' => [
@@ -84,6 +95,11 @@ return [
             'filter_based_sales_amount' => 'Filter Based Sales Amount',
             'has_no_filter' => 'There is no filter.',
         ],
+        'home' => [
+            'there_is_no_have_table' => 'There is no have table.',
+        ],
+        'are_u_have_not_a_account' => 'Are you have not a account?',
+        'are_u_already_have_a_account' => 'Are you already have a account?',
     ],
     'fields' => [
         'category' => [
