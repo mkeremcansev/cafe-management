@@ -91,8 +91,7 @@
                             <a href="{{ route('dashboard.tables.show', $table->id) }}" class="text-white w-100">
                                 <h3 class="card-title">
                                     <span>{{ $table->name }}</span>
-                                    <span
-                                        class="float-end">{{ $table->status->is(\App\Enums\TableStatus::OPEN) ? $table->carts->moneySum('total_price') : null }}</span>
+                                    <span class="float-end">{{ $table->status->is(\App\Enums\TableStatus::OPEN) ? $table->carts->moneySum('total_price') : null }}</span>
                                 </h3>
                             </a>
                         </div>

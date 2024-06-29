@@ -13,10 +13,13 @@
                 }
             });
 
+            @if(\Illuminate\Support\Facades\Route::has($routeNamePrefix.'.destroy'))
             $('.delete-modal-open').on('click', function () {
                 let id = $(this).attr('data-attr');
                 $('.delete-modal-form').attr('action', '{{ route($routeNamePrefix.'.destroy', '') }}/' + id);
             });
+            @endif
+
         });
     </script>
 
@@ -43,7 +46,9 @@
                             @foreach($columns as $column)
                                 <th class="wd-15p border-bottom-0">@lang('words.fields.'.$table.'.'.get_datatables_column_last_column($column))</th>
                             @endforeach
-                            <th class="border-bottom-0" width="10">@lang('words.buttons.actions')</th>
+                            @if(\Illuminate\Support\Facades\Route::has($routeNamePrefix.'.edit') || Illuminate\Support\Facades\Route::has($routeNamePrefix.'.destroy'))
+                                <th class="border-bottom-0" width="10">@lang('words.buttons.actions')</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -53,15 +58,19 @@
                                     <td>{{ get_datatables_column_relation($builder, split_datatables_column_relation(columnWithRelation: $column)) }}</td>
                                 @endforeach
                                 <td>
-                                    <a href="{{ route($routeNamePrefix.'.edit', $builder->id) }}"
-                                       class="btn btn-radius btn-warning">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a class="modal-effect btn btn-radius btn-danger delete-modal-open"
-                                       data-bs-effect="effect-scale" data-bs-toggle="modal" href="#delete-modal"
-                                       data-attr="{{ $builder->id }}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
+                                    @if(\Illuminate\Support\Facades\Route::has($routeNamePrefix.'.edit'))
+                                        <a href="{{ route($routeNamePrefix.'.edit', $builder->id) }}"
+                                           class="btn btn-radius btn-warning">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    @endif
+                                    @if(\Illuminate\Support\Facades\Route::has($routeNamePrefix.'.destroy'))
+                                        <a class="modal-effect btn btn-radius btn-danger delete-modal-open"
+                                           data-bs-effect="effect-scale" data-bs-toggle="modal" href="#delete-modal"
+                                           data-attr="{{ $builder->id }}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

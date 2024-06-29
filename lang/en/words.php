@@ -30,6 +30,12 @@ return [
             'company' => 'Company',
             'edit' => 'Edit Company',
         ],
+        'user' => [
+            'user' => 'User',
+            'index' => 'Users',
+            'create' => 'Create User',
+            'edit' => 'Edit User',
+        ],
         'logout' => 'Logout',
         'login' => 'Login',
         'register' => 'Register',
@@ -65,6 +71,10 @@ return [
             'company' => [
                 'updated' => 'Company updated successfully.',
             ],
+            'user' => [
+                'created' => 'User created successfully.',
+                'updated' => 'User updated successfully.',
+            ],
             'logout' => 'Logout successfully.',
             'login' => 'Login successfully.',
             'register' => 'Register successfully.',
@@ -74,6 +84,7 @@ return [
                 'general_error' => 'An error occurred while validating the form.',
                 'high_amount' => 'The amount you entered is higher than the total price.',
                 'product_quantity_greater_than_cart' => 'The quantity you entered is greater than the cart quantity.',
+                'default_max_company_user' => 'You have reached the :limit user limit of your company.',
             ],
             'general_error' => 'An error occurred.',
             'not_allowed_access' => 'You are not allowed to access this page.',
@@ -86,6 +97,7 @@ return [
         'company_details' => 'Company Details',
         'manual_collection' => 'Manuel Collection',
         'product_collection' => 'Product Collection',
+        'user_details' => 'User Details',
         'analysis' => [
             'open_tables_amount' => 'Open Tables Amount',
             'total_sales_amount' => 'Total Sales Amount',

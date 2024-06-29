@@ -7,10 +7,7 @@ use App\Models\Company;
 
 class CompanyController extends Controller
 {
-
-    public function __construct(public Company $company)
-    {
-    }
+    public function __construct(public Company $company) {}
 
     /**
      * Show the form for editing the specified resource.

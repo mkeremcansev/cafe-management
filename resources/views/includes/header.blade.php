@@ -53,6 +53,12 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    @if(auth()->user()->is_owner === true)
+                                        <a class="dropdown-item" href="{{ route('dashboard.companies.edit', auth()->user()->company_id) }}">
+                                            <i class="fa fa-compress fs-18"></i>
+                                            <span>@lang('words.menu.company.edit')</span>
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('dashboard.logout') }}">
                                         <i class="fa fa-sign-out fs-18"></i>
                                         <span>@lang('words.menu.logout')</span>

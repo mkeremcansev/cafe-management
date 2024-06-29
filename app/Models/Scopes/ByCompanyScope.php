@@ -13,6 +13,6 @@ class ByCompanyScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('company_id', auth()->id());
+        $builder->where('company_id', auth()->user()->company_id);
     }
 }

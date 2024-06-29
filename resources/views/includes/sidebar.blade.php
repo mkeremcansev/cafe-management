@@ -44,6 +44,19 @@
                         <li><a href="{{ route('dashboard.tables.create') }}" class="slide-item @if(request()->routeIs('dashboard.tables.create')) active @endif">@lang('words.menu.table.create')</a></li>
                     </ul>
                 </li>
+                @if(auth()->user()->is_owner === true)
+                    <li class="slide @if(request()->routeIs('dashboard.users.index', 'dashboard.users.create')) is-expanded @endif">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="#">
+                            <i class="fa fa-user side-menu__icon" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-home" aria-label="fa fa-home"></i>
+                            <span class="side-menu__label">@lang('words.menu.user.user')</span><i class="angle fa fa-angle-right"></i>
+                        </a>
+                        <ul class="slide-menu">
+                            <li><a href="{{ route('dashboard.users.index') }}" class="slide-item @if(request()->routeIs('dashboard.users.index')) active @endif">@lang('words.menu.user.index')</a></li>
+                            <li><a href="{{ route('dashboard.users.create') }}" class="slide-item @if(request()->routeIs('dashboard.users.create')) active @endif">@lang('words.menu.user.create')</a></li>
+                        </ul>
+                    </li>
+                @endif
+
                 <li class="slide">
                     <a class="side-menu__item has-link @if(request()->routeIs('dashboard.reports')) active @endif" data-bs-toggle="slide" href="{{ route('dashboard.reports') }}">
                         <i class="fa fa-area-chart side-menu__icon" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-home" aria-label="fa fa-home"></i>

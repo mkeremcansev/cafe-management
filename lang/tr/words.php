@@ -30,6 +30,12 @@ return [
             'company' => 'Şirket',
             'edit' => 'Şirket Düzenle',
         ],
+        'user' => [
+            'user' => 'Kullanıcı',
+            'index' => 'Kullanıcılar',
+            'create' => 'Kullanıcı Oluştur',
+            'edit' => 'Kullanıcı Düzenle',
+        ],
         'logout' => 'Çıkış Yap',
         'login' => 'Giriş Yap',
         'register' => 'Kayıt Ol',
@@ -65,6 +71,10 @@ return [
             'company' => [
                 'updated' => 'Şirket başarıyla güncellendi.',
             ],
+            'user' => [
+                'created' => 'Kullanıcı başarıyla oluşturuldu.',
+                'updated' => 'Kullanıcı başarıyla güncellendi.',
+            ],
             'logout' => 'Başarıyla çıkış yapıldı.',
             'login' => 'Başarıyla giriş yapıldı.',
             'register' => 'Başarıyla kayıt olundu.',
@@ -74,6 +84,7 @@ return [
                 'general_error' => 'Form doğrulaması sırasında bir hata oluştu.',
                 'high_amount' => 'Girdiğiniz miktar toplam fiyattan daha yüksek.',
                 'product_quantity_greater_than_cart' => 'Girdiğiniz miktar sepet miktarından daha fazla.',
+                'default_max_company_user' => 'Şirketinizin :limit kullanıcı sınırına ulaştınız.',
             ],
             'general_error' => 'Bir hata oluştu.',
             'not_allowed_access' => 'Bu sayfaya erişmeye izniniz yok.',
