@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'company.secure' => \App\Http\Middleware\CompanySecureMiddleware::class,
         ]);
+
+        $middleware->validateCsrfTokens(except: [
+            '/auto-deploy',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
