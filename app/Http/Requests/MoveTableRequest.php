@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCollectionDetailRequest extends FormRequest
+class MoveTableRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreCollectionDetailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'table_id' => ['required', 'integer', 'exists:tables,id'],
         ];
     }
 }
