@@ -3553,4 +3553,8 @@ body.bg-img4 .header-styles {
     color: #fff !important;
     fill: #fff !important;
 }
+
+.w-100 {
+    width: 100% !important;
+}
 /*# sourceMappingURL=skin-modes.css.map */
