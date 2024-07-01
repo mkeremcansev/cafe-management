@@ -97,7 +97,7 @@ return [
         'company_details' => 'Şirket Detayları',
         'manual_collection' => 'Manuel Tahsilat',
         'product_collection' => 'Ürün Tahsilatı',
-        'user_details' => 'User Details',
+        'user_details' => 'Kullanıcı Detayları',
         'analysis' => [
             'open_tables_amount' => 'Açık Masaların Tutarı',
             'total_sales_amount' => 'Toplam Satış Tutarı',
