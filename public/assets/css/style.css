@@ -18814,7 +18814,7 @@ a.chip:hover {
 
 .collection-bar {
     position: fixed !important;
-    bottom: 20px;
+    bottom: 40px;
     text-align: center;
     transition: background-color 0.1s linear;
     -moz-transition: background-color 0.1s linear;

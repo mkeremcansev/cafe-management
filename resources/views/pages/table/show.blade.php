@@ -152,19 +152,29 @@
     @if($table->carts()->exists())
         <div class="row justify-content-center">
             <div class="col-xl-4 col-md-12 collection-bar">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="alert alert-success m-2 p-2">
-                            @lang('words.fields.collection.paid_amount') {{ $table->total_collection }}
+                <div aria-multiselectable="true" class="accordion-primary mb-2" id="accordion2" role="tablist">
+                    <div class="card mb-0 mt-2">
+                        <div class="card-header border-bottom-0" id="collection-information" role="tab">
+                            <a class="accor-style2 collapsed" aria-controls="collection-information-collapse" aria-expanded="false" data-bs-toggle="collapse" href="#collection-information-collapse">
+                                <i class="fe fe-plus-circle me-2"></i>
+                                <span>@lang('words.buttons.collection')</span>
+                            </a>
                         </div>
-                        <div class="alert alert-danger m-2 p-2">
-                            @lang('words.fields.collection.remaining_amount') {{ $table->carts->moneySum('total_price')->minus($table->total_collection) }}
-                        </div>
-                        <a href="#collection-modal" data-bs-effect="effect-scale" data-bs-toggle="modal"
-                           class="btn btn-success m-0 my-1 mt-4">
-                            <span>@lang('words.buttons.collection')</span>
-                            <i class="fa fa-arrow-right ms-2"></i>
-                        </a>
+                        <div aria-labelledby="collection-information" class="collapse" data-bs-parent="#collection-information-collapse" id="collection-information-collapse" role="tabpanel" style="">
+                            <div class="card-body">
+                                <div class="alert alert-success m-2 p-2">
+                                    @lang('words.fields.collection.paid_amount') {{ $table->total_collection }}
+                                </div>
+                                <div class="alert alert-danger m-2 p-2">
+                                    @lang('words.fields.collection.remaining_amount') {{ $table->carts->moneySum('total_price')->minus($table->total_collection) }}
+                                </div>
+                                <a href="#collection-modal" data-bs-effect="effect-scale" data-bs-toggle="modal"
+                                   class="btn btn-success m-0 my-1 mt-4">
+                                    <span>@lang('words.buttons.collection')</span>
+                                    <i class="fa fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div><!-- collapse -->
                     </div>
                 </div>
             </div>
