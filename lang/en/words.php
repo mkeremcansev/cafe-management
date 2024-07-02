@@ -181,4 +181,7 @@ return [
     'modal_descriptions' => [
         'delete' => 'Are you sure you want to delete this record?',
     ],
+    'release_announcements' => [
+        '1_0_0' => 'The first version of the Coffee-Managing application has been released! 🎉'
+    ],
 ];

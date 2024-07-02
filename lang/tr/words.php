@@ -181,4 +181,7 @@ return [
     'modal_descriptions' => [
         'delete' => 'Bu kaydı silmek istediğinizden emin misiniz?',
     ],
+    'release_announcements' => [
+        '1_0_0' => 'Coffee-Managing uygulamasının ilk sürümü yayınlandı! 🎉',
+    ]
 ];
