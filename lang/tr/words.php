@@ -98,6 +98,7 @@ return [
         'manual_collection' => 'Manuel Tahsilat',
         'product_collection' => 'Ürün Tahsilatı',
         'user_details' => 'Kullanıcı Detayları',
+        'has_no_product' => 'Ürün yok.',
         'analysis' => [
             'open_tables_amount' => 'Açık Masaların Tutarı',
             'total_sales_amount' => 'Toplam Satış Tutarı',

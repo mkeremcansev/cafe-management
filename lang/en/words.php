@@ -98,6 +98,7 @@ return [
         'manual_collection' => 'Manuel Collection',
         'product_collection' => 'Product Collection',
         'user_details' => 'User Details',
+        'has_no_product' => 'There is no product.',
         'analysis' => [
             'open_tables_amount' => 'Open Tables Amount',
             'total_sales_amount' => 'Total Sales Amount',

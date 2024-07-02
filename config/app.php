@@ -90,7 +90,7 @@ return [
 
     'premium_users' => [
         'mkeremcansev@gmail.com',
-        'mee.cansev@gmail.com'
+        'mee.cansev@gmail.com',
     ],
 
     /*

@@ -49,41 +49,47 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($table->carts as $cart)
-                                <tr>
-                                    <td>{{ $cart->product->name }} ({{ $cart->price }})</td>
-                                    <td>{{ $cart->total_price }}</td>
-                                    <td class="text-center">{{ $cart->quantity }}</td>
-                                    <td class="d-flex justify-content-center">
-                                        <form action="{{ route('dashboard.carts.update', $cart->id) }}" method="POST">
-                                            @csrf
-                                            @method('PATCH')
-                                            <input type="hidden" name="type" value="{{ \App\Enums\CartUpdateType::INCREMENT }}">
-                                            <button class="btn btn-square btn-success-light me-1">
-                                                <i class="icon icon-plus"></i>
-                                            </button>
-                                        </form>
-                                        @if($cart->is_before_collection === false)
-                                            <form action="{{ route('dashboard.carts.update', $cart->id) }}"
-                                                  method="POST">
+                            @if($table->carts()->exists())
+                                @foreach($table->carts as $cart)
+                                    <tr>
+                                        <td>{{ $cart->product->name }} ({{ $cart->price }})</td>
+                                        <td>{{ $cart->total_price }}</td>
+                                        <td class="text-center">{{ $cart->quantity }}</td>
+                                        <td class="d-flex justify-content-center">
+                                            <form action="{{ route('dashboard.carts.update', $cart->id) }}" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input type="hidden" name="type" value="{{ \App\Enums\CartUpdateType::DECREMENT }}">
-                                                <button class="btn btn-square btn-warning-light me-1">
-                                                    <i class="icon icon-minus"></i>
+                                                <input type="hidden" name="type" value="{{ \App\Enums\CartUpdateType::INCREMENT }}">
+                                                <button class="btn btn-square btn-success-light me-1">
+                                                    <i class="icon icon-plus"></i>
                                                 </button>
                                             </form>
-                                            <form action="{{ route('dashboard.carts.destroy', $cart->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-square btn-danger-light me-1">
-                                                    <i class="icon icon-trash"></i>
-                                                </button>
-                                            </form>
-                                        @endif
-                                    </td>
+                                            @if($cart->is_before_collection === false)
+                                                <form action="{{ route('dashboard.carts.update', $cart->id) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <input type="hidden" name="type" value="{{ \App\Enums\CartUpdateType::DECREMENT }}">
+                                                    <button class="btn btn-square btn-warning-light me-1">
+                                                        <i class="icon icon-minus"></i>
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('dashboard.carts.destroy', $cart->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-square btn-danger-light me-1">
+                                                        <i class="icon icon-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="4" class="text-center">@lang('words.content.has_no_product')</td>
                                 </tr>
-                            @endforeach
+                            @endif
 
                             </tbody>
                         </table>
@@ -119,23 +125,29 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($category->products as $product)
+                                                @if($category->products()->exists() > 0)
+                                                    @foreach($category->products as $product)
+                                                        <tr>
+                                                            <td>{{ $product->name }}</td>
+                                                            <td>{{ $product->price }}</td>
+                                                            <td class="d-flex justify-content-center">
+                                                                <form action="{{ route('dashboard.carts.store') }}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" name="table_id" value="{{ $table->id }}">
+                                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                                    <input type="hidden" name="quantity" value="1">
+                                                                    <button class="btn btn-square btn-success-light me-1">
+                                                                        <i class="icon icon-plus"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else
                                                     <tr>
-                                                        <td>{{ $product->name }}</td>
-                                                        <td>{{ $product->price }}</td>
-                                                        <td class="d-flex justify-content-center">
-                                                            <form action="{{ route('dashboard.carts.store') }}" method="POST">
-                                                                @csrf
-                                                                <input type="hidden" name="table_id" value="{{ $table->id }}">
-                                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                                <input type="hidden" name="quantity" value="1">
-                                                                <button class="btn btn-square btn-success-light me-1">
-                                                                    <i class="icon icon-plus"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td>
+                                                        <td colspan="3" class="text-center">@lang('words.content.has_no_product')</td>
                                                     </tr>
-                                                @endforeach
+                                                @endif
 
                                                 </tbody>
                                             </table>
