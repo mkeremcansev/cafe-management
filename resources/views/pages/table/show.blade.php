@@ -239,7 +239,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">@lang('words.fields.collection.amount')</label>
-                                                    <input class="form-control money-input" placeholder="@lang('words.fields.collection.amount')" type="text" name="amount" required>
+                                                    <input class="form-control money-input" placeholder="@lang('words.fields.collection.amount')" type="text" name="amount" required value="{{ $table->carts->moneySum('total_price')->minus($table->total_collection)->getMinorAmount()->toInt() }}">
                                                 </div>
                                                 <button class="btn btn-primary"
                                                         type="submit">@lang('words.buttons.collection')</button>
