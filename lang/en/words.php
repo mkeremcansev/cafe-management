@@ -109,6 +109,7 @@ return [
             'last_month_sales_amount' => 'Last Month Sales Amount',
             'last_day_sales_amount' => 'Last Day Sales Amount',
             'month_based_sales_amount' => 'Month Based Sales Amount',
+            'product_based_sales_amount' => 'Product Based Sales Amount',
             'filter_based_sales_amount' => 'Filter Based Sales Amount',
             'has_no_filter' => 'There is no filter.',
         ],

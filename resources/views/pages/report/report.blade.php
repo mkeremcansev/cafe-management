@@ -107,6 +107,47 @@
             }
         });
         @endif
+
+        let ctxSoldProducts = document.getElementById("chart-sold");
+        let myChartSoldProducts = new Chart(ctxSoldProducts, {
+            type: 'bar',
+            data: {
+                labels: [
+                    @foreach($soldProducts as $product)
+                        '{{ $product["product_name"] }} X {{ $product["quantity"] }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'Total Price',
+                    data: [
+                        @foreach($soldProducts as $product)
+                            {{ $product["total_price"]->getAmount() }},
+                        @endforeach
+                    ],
+                    borderColor: "#13bfa6",
+                    borderWidth: "0",
+                    backgroundColor: "#13bfa6"
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    labels: {
+                        fontColor: "#77778e"
+                    },
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function (ctx) {
+                                return ctx[0].formattedValue = '{{ config('app.currency') }} ' + ctx[0].formattedValue;
+                            },
+                        }
+                    }
+                },
+            }
+        });
     </script>
 @endpush
 @section('content')
@@ -118,6 +159,52 @@
     </div>
     <!-- PAGE-HEADER END -->
     <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header border-bottom">
+                    <h3 class="card-title">@lang('words.content.analysis.product_based_sales_amount')</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('dashboard.reports') }}" method="GET">
+                        <input type="hidden" name="filter_type" value="product_filter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="start_date">@lang('words.fields.report.start_date')</label>
+                                    <div class="input-group col-md-12 ps-0">
+                                        <div class="input-group-text bg-primary-transparent text-success">
+                                            <i class="fe fe-calendar text-20"></i>
+                                        </div>
+                                        <input class="form-control datetimepicker_filter" id="start_date"
+                                               name="start_date" type="text"
+                                               value="{{ request()->query('start_date') }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="end_date">@lang('words.fields.report.end_date')</label>
+                                    <div class="input-group col-md-12 ps-0">
+                                        <div class="input-group-text bg-primary-transparent text-success">
+                                            <i class="fe fe-calendar text-20"></i>
+                                        </div>
+                                        <input class="form-control datetimepicker_filter" id="end_date"
+                                               name="end_date" type="text"
+                                               value="{{ request()->query('end_date') }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn ripple btn-success w-100" type="submit">@lang('words.buttons.filter')</button>
+                    </form>
+                    <div class="chart-container mt-5">
+                        <canvas id="chart-sold" class="h-275"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-header border-bottom">
@@ -131,7 +218,6 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6">
-
             <div class="card">
                 <div class="card-header border-bottom">
                     <h3 class="card-title">@lang('words.content.analysis.filter_based_sales_amount')</h3>
@@ -140,6 +226,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="{{ route('dashboard.reports') }}" method="GET">
+                                <input type="hidden" name="filter_type" value="collection_filter">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">

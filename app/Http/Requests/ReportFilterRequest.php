@@ -24,6 +24,7 @@ class ReportFilterRequest extends FormRequest
         return [
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
+            'filter_type' => 'nullable|string',
         ];
     }
 }

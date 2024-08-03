@@ -109,6 +109,7 @@ return [
             'last_month_sales_amount' => 'Geçen Ayın Satış Tutarı',
             'last_day_sales_amount' => 'Dünün Satış Tutarı',
             'month_based_sales_amount' => 'Aya Göre Satış Tutarı',
+            "product_based_sales_amount" => "Ürüne Göre Satış Tutarı",
             'filter_based_sales_amount' => 'Filtreye Göre Satış Tutarı',
             'has_no_filter' => 'Filtre yok.',
         ],
