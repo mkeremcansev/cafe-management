@@ -32,7 +32,8 @@
                 <div class="card-header border-bottom">
                     <h3 class="card-title me-3">@lang('words.content.table_details')</h3>
                     @if($table->status->is(\App\Enums\TableStatus::OPEN))
-                        <a href="#move-table-modal" data-bs-effect="effect-scale" data-bs-toggle="modal" class="btn btn-success">
+                        <a href="#move-table-modal" data-bs-effect="effect-scale" data-bs-toggle="modal"
+                           class="btn btn-success">
                             @lang('words.buttons.move')
                         </a>
                     @endif
@@ -56,10 +57,12 @@
                                         <td>{{ $cart->total_price }}</td>
                                         <td class="text-center">{{ $cart->quantity }}</td>
                                         <td class="d-flex justify-content-center">
-                                            <form action="{{ route('dashboard.carts.update', $cart->id) }}" method="POST">
+                                            <form action="{{ route('dashboard.carts.update', $cart->id) }}"
+                                                  method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input type="hidden" name="type" value="{{ \App\Enums\CartUpdateType::INCREMENT }}">
+                                                <input type="hidden" name="type"
+                                                       value="{{ \App\Enums\CartUpdateType::INCREMENT }}">
                                                 <button class="btn btn-square btn-success-light me-1">
                                                     <i class="icon icon-plus"></i>
                                                 </button>
@@ -69,12 +72,14 @@
                                                       method="POST">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <input type="hidden" name="type" value="{{ \App\Enums\CartUpdateType::DECREMENT }}">
+                                                    <input type="hidden" name="type"
+                                                           value="{{ \App\Enums\CartUpdateType::DECREMENT }}">
                                                     <button class="btn btn-square btn-warning-light me-1">
                                                         <i class="icon icon-minus"></i>
                                                     </button>
                                                 </form>
-                                                <form action="{{ route('dashboard.carts.destroy', $cart->id) }}" method="POST">
+                                                <form action="{{ route('dashboard.carts.destroy', $cart->id) }}"
+                                                      method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-square btn-danger-light me-1">
@@ -121,31 +126,42 @@
                                                 <tr class="border-top">
                                                     <th>@lang('words.fields.product.name')</th>
                                                     <th width="1">@lang('words.fields.product.price')</th>
+                                                    <th width="1">@lang('words.fields.cart.quantity')</th>
                                                     <th width="1">@lang('words.buttons.actions')</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 @if($category->products()->exists() > 0)
                                                     @foreach($category->products as $product)
-                                                        <tr>
-                                                            <td>{{ $product->name }}</td>
-                                                            <td>{{ $product->price }}</td>
-                                                            <td class="d-flex justify-content-center">
-                                                                <form action="{{ route('dashboard.carts.store') }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="table_id" value="{{ $table->id }}">
-                                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                                    <input type="hidden" name="quantity" value="1">
-                                                                    <button class="btn btn-square btn-success-light me-1">
+                                                        <form action="{{ route('dashboard.carts.store') }}"
+                                                              method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="table_id"
+                                                                   value="{{ $table->id }}">
+                                                            <input type="hidden" name="product_id"
+                                                                   value="{{ $product->id }}">
+                                                            <tr>
+                                                                <td>{{ $product->name }}</td>
+                                                                <td>{{ $product->price }}</td>
+                                                                <td>
+                                                                    <input class="form-control"
+                                                                           placeholder="@lang('words.fields.collection.amount')"
+                                                                           type="text" name="quantity" required value="1">
+                                                                </td>
+                                                                <td class="d-flex justify-content-center">
+                                                                    <button
+                                                                        class="btn btn-square btn-success-light me-1">
                                                                         <i class="icon icon-plus"></i>
                                                                     </button>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
+                                                                </td>
+                                                            </tr>
+                                                        </form>
+
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="3" class="text-center">@lang('words.content.has_no_product')</td>
+                                                        <td colspan="3"
+                                                            class="text-center">@lang('words.content.has_no_product')</td>
                                                     </tr>
                                                 @endif
 
@@ -167,12 +183,15 @@
                 <div aria-multiselectable="true" class="accordion-primary mb-2" id="accordion2" role="tablist">
                     <div class="card mb-0 mt-2">
                         <div class="card-header border-bottom-0" id="collection-information" role="tab">
-                            <a class="accor-style2 collapsed" aria-controls="collection-information-collapse" aria-expanded="false" data-bs-toggle="collapse" href="#collection-information-collapse">
+                            <a class="accor-style2 collapsed" aria-controls="collection-information-collapse"
+                               aria-expanded="false" data-bs-toggle="collapse" href="#collection-information-collapse">
                                 <i class="fe fe-plus-circle me-2"></i>
                                 <span>@lang('words.buttons.collection')</span>
                             </a>
                         </div>
-                        <div aria-labelledby="collection-information" class="collapse" data-bs-parent="#collection-information-collapse" id="collection-information-collapse" role="tabpanel" style="">
+                        <div aria-labelledby="collection-information" class="collapse"
+                             data-bs-parent="#collection-information-collapse" id="collection-information-collapse"
+                             role="tabpanel" style="">
                             <div class="card-body">
                                 <div class="alert alert-success m-2 p-2">
                                     @lang('words.fields.collection.paid_amount') {{ $table->total_collection }}
@@ -209,10 +228,12 @@
                                     <div class="tabs-menu ">
                                         <ul class="nav panel-tabs justify-content-center">
                                             <li>
-                                                <a href="#manuel" id="manuel-tab" class="me-1 text-default my-1 active" data-bs-toggle="tab">@lang('words.content.manual_collection')</a>
+                                                <a href="#manuel" id="manuel-tab" class="me-1 text-default my-1 active"
+                                                   data-bs-toggle="tab">@lang('words.content.manual_collection')</a>
                                             </li>
                                             <li>
-                                                <a href="#product" id="product-tab" data-bs-toggle="tab" class="me-1 text-default my-1">@lang('words.content.product_collection')</a>
+                                                <a href="#product" id="product-tab" data-bs-toggle="tab"
+                                                   class="me-1 text-default my-1">@lang('words.content.product_collection')</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -222,12 +243,15 @@
                                         <div class="tab-pane active" id="manuel">
                                             <form action="{{ route('dashboard.collections.store') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="type" value="{{ \App\Enums\CollectionType::MANUEL }}">
+                                                <input type="hidden" name="type"
+                                                       value="{{ \App\Enums\CollectionType::MANUEL }}">
                                                 <input type="hidden" name="table_id" value="{{ $table->id }}">
                                                 <div class="form-group">
                                                     <label
                                                         class="form-label">@lang('words.fields.collection.method')</label>
-                                                    <select class="form-control select2-show-search form-select" data-placeholder="@lang('words.fields.collection.method')" name="method">
+                                                    <select class="form-control select2-show-search form-select"
+                                                            data-placeholder="@lang('words.fields.collection.method')"
+                                                            name="method">
                                                         <option label="@lang('words.inputs.choose_one')"></option>
                                                         <option value="{{ \App\Enums\CollectionMethod::CASH }}">
                                                             @lang('words.fields.collection.methods.cash')
@@ -238,8 +262,12 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="form-label">@lang('words.fields.collection.amount')</label>
-                                                    <input class="form-control money-input" placeholder="@lang('words.fields.collection.amount')" type="text" name="amount" required value="{{ $table->carts->moneySum('total_price')->minus($table->total_collection)->getMinorAmount()->toInt() }}">
+                                                    <label
+                                                        class="form-label">@lang('words.fields.collection.amount')</label>
+                                                    <input class="form-control money-input"
+                                                           placeholder="@lang('words.fields.collection.amount')"
+                                                           type="text" name="amount" required
+                                                           value="{{ $table->carts->moneySum('total_price')->minus($table->total_collection)->getMinorAmount()->toInt() }}">
                                                 </div>
                                                 <button class="btn btn-primary"
                                                         type="submit">@lang('words.buttons.collection')</button>
@@ -259,12 +287,14 @@
                                                             <option value="{{ \App\Enums\CollectionMethod::CASH }}">
                                                                 @lang('words.fields.collection.methods.cash')
                                                             </option>
-                                                            <option value="{{ \App\Enums\CollectionMethod::CREDIT_CARD }}">
+                                                            <option
+                                                                value="{{ \App\Enums\CollectionMethod::CREDIT_CARD }}">
                                                                 @lang('words.fields.collection.methods.credit_card')
                                                             </option>
                                                         </select>
                                                     </div>
-                                                    <input type="hidden" name="type" value="{{ \App\Enums\CollectionType::PRODUCT_COLLECTION }}">
+                                                    <input type="hidden" name="type"
+                                                           value="{{ \App\Enums\CollectionType::PRODUCT_COLLECTION }}">
                                                     <input type="hidden" name="table_id" value="{{ $table->id }}">
                                                     <div data-repeater-list="products">
                                                         @foreach($table->carts as $cart)
@@ -274,9 +304,10 @@
                                                                         <div class="form-group">
                                                                             <label
                                                                                 class="form-label">@lang('words.menu.product.product')</label>
-                                                                            <select class="form-control form-select collection-select-disabled"
-                                                                                    data-placeholder="@lang('words.menu.product.product')"
-                                                                                    name="product_id">
+                                                                            <select
+                                                                                class="form-control form-select collection-select-disabled"
+                                                                                data-placeholder="@lang('words.menu.product.product')"
+                                                                                name="product_id">
                                                                                 <option
                                                                                     label="@lang('words.inputs.choose_one')"></option>
                                                                                 @foreach($table->carts as $cartProduct)
@@ -302,12 +333,14 @@
                                                                         <div class="form-group">
                                                                             <label
                                                                                 class="form-label">@lang('words.fields.collection.total_amount')</label>
-                                                                            <span class="form-control span-price">{{ $cart->total_price }}</span>
+                                                                            <span
+                                                                                class="form-control span-price">{{ $cart->total_price }}</span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-2 col-12">
                                                                         <div class="form-group">
-                                                                            <button data-repeater-delete type="button" class="btn btn-danger waves-effect waves-float waves-light w-100">
+                                                                            <button data-repeater-delete type="button"
+                                                                                    class="btn btn-danger waves-effect waves-float waves-light w-100">
                                                                                 @lang('words.buttons.delete')
                                                                             </button>
                                                                         </div>
@@ -316,7 +349,8 @@
                                                             </div>
                                                         @endforeach
                                                     </div>
-                                                    <button class="btn btn-primary" type="submit">@lang('words.buttons.collection')</button>
+                                                    <button class="btn btn-primary"
+                                                            type="submit">@lang('words.buttons.collection')</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -350,7 +384,8 @@
                                 <div class="form-group">
                                     <label
                                         class="form-label">@lang('words.menu.table.table')</label>
-                                    <select class="form-control select2-show-search form-select" data-placeholder="@lang('words.menu.table.table')" name="table_id">
+                                    <select class="form-control select2-show-search form-select"
+                                            data-placeholder="@lang('words.menu.table.table')" name="table_id">
                                         <option label="@lang('words.inputs.choose_one')"></option>
                                         @foreach($tablesWithoutCurrent as $tableWithoutCurrent)
                                             <option value="{{ $tableWithoutCurrent->id }}">

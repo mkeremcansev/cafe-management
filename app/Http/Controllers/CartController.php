@@ -37,7 +37,7 @@ class CartController extends Controller
             ->first();
 
         if ($cart !== null) {
-            $cart->increment('quantity');
+            $cart->increment('quantity', $request->quantity);
 
             return back()->with('success', __('words.messages.success.cart.updated'));
         }
