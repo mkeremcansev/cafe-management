@@ -57,7 +57,9 @@
                                         <td>{{ $cart->total_price }}</td>
                                         <td class="text-center">{{ $cart->quantity }}</td>
                                         <td class="d-flex justify-content-center">
-                                            <form action="{{ route('dashboard.carts.update', $cart->id) }}"
+                                            
+                                            @if($cart->is_before_collection === false)
+                                                <form action="{{ route('dashboard.carts.update', $cart->id) }}"
                                                   method="POST">
                                                 @csrf
                                                 @method('PATCH')
@@ -66,8 +68,7 @@
                                                 <button class="btn btn-square btn-success-light me-1">
                                                     <i class="icon icon-plus"></i>
                                                 </button>
-                                            </form>
-                                            @if($cart->is_before_collection === false)
+                                                </form>
                                                 <form action="{{ route('dashboard.carts.update', $cart->id) }}"
                                                       method="POST">
                                                     @csrf
@@ -86,6 +87,8 @@
                                                         <i class="icon icon-trash"></i>
                                                     </button>
                                                 </form>
+                                            @else
+                                                -
                                             @endif
                                         </td>
                                     </tr>
