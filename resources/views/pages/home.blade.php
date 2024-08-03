@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('title', __('words.menu.home'))
+@push('scripts')
+<script>
+setTimeout(() => {location.reload()}) 
+</script>
+@endpush
 @section('content')
     <!-- PAGE-HEADER -->
     <div class="page-header">
