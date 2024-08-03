@@ -40,21 +40,6 @@ class CompanySecureMiddleware
         ) {
             return redirect()->route('dashboard.home')->with('error', __('words.messages.error.not_allowed_access'));
         }
-        
-        if (
-            (
-            $request->routeIs('dashboard.tables.create') ||
-            $request->routeIs('dashboard.tables.store') ||
-            $request->routeIs('dashboard.tables.index') ||
-            $request->routeIs('dashboard.tables.edit') ||
-            $request->routeIs('dashboard.tables.update') ||
-            $request->routeIs('dashboard.tables.destroy')
-            )
-            &&
-            ($user->is_owner === false)
-        ) {
-            return redirect()->route('dashboard.home')->with('error', __('words.messages.error.not_allowed_access'));
-        }
 
         return $next($request);
     }
