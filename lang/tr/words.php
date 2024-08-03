@@ -90,7 +90,7 @@ return [
             'not_allowed_access' => 'Bu sayfaya erişmeye izniniz yok.',
         ],
         'general' => [
-            'created_by_user' => '<b class="text-primary">:name</b> tarafında <b class="text-primary">:quantity</b> adet <b class="text-primary">:product</b> adlı ürün sepete eklendi.',
+            'created_by_user' => '<b class="text-primary">:name</b> tarafından <b class="text-primary">:quantity</b> adet <b class="text-primary">:product</b> adlı ürün sepete eklendi.',
         ],
     ],
     'content' => [

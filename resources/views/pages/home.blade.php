@@ -1,10 +1,10 @@
 @extends('layouts.default')
 @section('title', __('words.menu.home'))
-{{--@push('scripts')--}}
-{{--<script>--}}
-{{--setTimeout(() => {location.reload()}, 5000) --}}
-{{--</script>--}}
-{{--@endpush--}}
+@push('scripts')
+<script>
+    setTimeout(() => {location.reload()}, 5000)
+</script>
+@endpush
 @section('content')
     <!-- PAGE-HEADER -->
     <div class="page-header">
