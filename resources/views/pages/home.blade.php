@@ -2,7 +2,7 @@
 @section('title', __('words.menu.home'))
 @push('scripts')
 <script>
-setTimeout(() => {location.reload()}) 
+setTimeout(() => {location.reload()}, 5000) 
 </script>
 @endpush
 @section('content')
