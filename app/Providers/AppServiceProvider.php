@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
+use App\Models\Collection;
+use App\Models\TableState;
+use App\Observers\BaseCompanyObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Cart::observe(BaseCompanyObserver::class);
+        TableState::observe(BaseCompanyObserver::class);
+        Collection::observe(BaseCompanyObserver::class);
     }
 }

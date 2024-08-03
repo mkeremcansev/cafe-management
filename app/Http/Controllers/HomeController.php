@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Company;
 use App\Models\Table;
 use App\Services\MoneyService;
 use Illuminate\View\View;
@@ -36,5 +37,16 @@ class HomeController extends Controller
                         ->minus($openTable->openState->collections?->moneySum('amount') ?? MoneyService::zero());
                 }, MoneyService::zero())
             );
+    }
+
+    public function cache(Company $company): bool
+    {
+        if (cache()->has("company_cache_{$company->id}") === false) {
+            return false;
+        }
+
+        cache()->forget("company_cache_{$company->id}");
+
+        return true;
     }
 }

@@ -2,7 +2,16 @@
 @section('title', __('words.menu.home'))
 @push('scripts')
 <script>
-    setTimeout(() => {location.reload()}, 5000)
+    setInterval(() => {
+        $.ajax({
+            type: 'GET',
+            url: '{{ route("dashboard.cache", auth()->user()->company_id) }}',
+            dataType: 'json',
+            success: function () {
+                location.reload();
+            }
+        });
+    }, 7000)
 </script>
 @endpush
 @section('content')
