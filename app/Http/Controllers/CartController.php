@@ -36,7 +36,7 @@ class CartController extends Controller
             ->where('product_id', $product->id)
             ->first();
 
-        if ($cart !== null) {
+        if ($cart !== null && $cart?->is_before_collection === false) {
             $cart->increment('quantity', $request->quantity);
 
             return back()->with('success', __('words.messages.success.cart.updated'));
