@@ -118,7 +118,7 @@
                     @endforeach
                 ],
                 datasets: [{
-                    label: 'Total Price',
+                    label: '@lang('words.fields.product.price')',
                     data: [
                         @foreach($soldProducts as $product)
                             {{ $product["total_price"]->getAmount() }},
