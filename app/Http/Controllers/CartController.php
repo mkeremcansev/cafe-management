@@ -57,6 +57,10 @@ class CartController extends Controller
      */
     public function update(UpdateCartRequest $request, Cart $cart): RedirectResponse
     {
+        if ($cart->is_before_collection === true) {
+            return back()->with('error', __('words.messages.error.validations.general_error'));
+        }
+
         if (CartUpdateType::from($request->type)->is(CartUpdateType::DECREMENT)) {
             if ($cart->quantity === 1) {
                 return $this->destroy($cart);
@@ -77,6 +81,10 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart): RedirectResponse
     {
+        if ($cart->is_before_collection === true) {
+            return back()->with('error', __('words.messages.error.validations.general_error'));
+        }
+
         $cartCount = $this->cart->where('table_state_id', $cart->table_state_id)->count();
 
         if ($cartCount === 1) {

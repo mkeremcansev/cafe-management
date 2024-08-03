@@ -41,6 +41,55 @@ class CompanySecureMiddleware
             return redirect()->route('dashboard.home')->with('error', __('words.messages.error.not_allowed_access'));
         }
 
+        if (
+            (
+                $request->routeIs('dashboard.tables.create') ||
+                $request->routeIs('dashboard.tables.store') ||
+                $request->routeIs('dashboard.tables.index') ||
+                $request->routeIs('dashboard.tables.edit') ||
+                $request->routeIs('dashboard.tables.update') ||
+                $request->routeIs('dashboard.tables.destroy')
+            )
+            &&
+            ($user->is_owner === false)
+        ) {
+            return redirect()->route('dashboard.home')->with('error', __('words.messages.error.not_allowed_access'));
+        }
+
+        if (
+            (
+                $request->routeIs('dashboard.products.create') ||
+                $request->routeIs('dashboard.products.store') ||
+                $request->routeIs('dashboard.products.index') ||
+                $request->routeIs('dashboard.products.edit') ||
+                $request->routeIs('dashboard.products.update') ||
+                $request->routeIs('dashboard.products.destroy')
+            )
+            &&
+            ($user->is_owner === false)
+        ) {
+            return redirect()->route('dashboard.home')->with('error', __('words.messages.error.not_allowed_access'));
+        }
+
+        if (
+            (
+                $request->routeIs('dashboard.categories.create') ||
+                $request->routeIs('dashboard.categories.store') ||
+                $request->routeIs('dashboard.categories.index') ||
+                $request->routeIs('dashboard.categories.edit') ||
+                $request->routeIs('dashboard.categories.update') ||
+                $request->routeIs('dashboard.categories.destroy')
+            )
+            &&
+            ($user->is_owner === false)
+        ) {
+            return redirect()->route('dashboard.home')->with('error', __('words.messages.error.not_allowed_access'));
+        }
+
+        if ($request->routeIs('dashboard.reports') && $user->is_owner === false) {
+            return redirect()->route('dashboard.home')->with('error', __('words.messages.error.not_allowed_access'));
+        }
+
         return $next($request);
     }
 }

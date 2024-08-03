@@ -47,7 +47,7 @@ class TableController extends Controller
      */
     public function show(Table $table)
     {
-        $table->load('carts.product', 'openState.collections');
+        $table->load('carts.product', 'carts.user', 'openState.collections');
 
         $tablesWithoutCurrent = $this->table->where('id', '!=', $table->id)->get();
 

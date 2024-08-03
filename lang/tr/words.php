@@ -89,6 +89,9 @@ return [
             'general_error' => 'Bir hata oluştu.',
             'not_allowed_access' => 'Bu sayfaya erişmeye izniniz yok.',
         ],
+        'general' => [
+            'created_by_user' => '<b class="text-primary">:name</b> tarafında <b class="text-primary">:quantity</b> adet <b class="text-primary">:product</b> adlı ürün sepete eklendi.',
+        ],
     ],
     'content' => [
         'category_details' => 'Kategori Detayları',
@@ -99,6 +102,7 @@ return [
         'product_collection' => 'Ürün Tahsilatı',
         'user_details' => 'Kullanıcı Detayları',
         'has_no_product' => 'Ürün yok.',
+        'table_history' => 'Masa Geçmişi',
         'analysis' => [
             'open_tables_amount' => 'Açık Masaların Tutarı',
             'total_sales_amount' => 'Toplam Satış Tutarı',
@@ -183,5 +187,5 @@ return [
     ],
     'release_announcements' => [
         '1_0_0' => 'Coffee-Managing uygulamasının ilk sürümü yayınlandı! 🎉',
-    ]
+    ],
 ];

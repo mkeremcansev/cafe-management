@@ -1,10 +1,10 @@
 @extends('layouts.default')
 @section('title', __('words.menu.home'))
-@push('scripts')
-<script>
-setTimeout(() => {location.reload()}, 5000) 
-</script>
-@endpush
+{{--@push('scripts')--}}
+{{--<script>--}}
+{{--setTimeout(() => {location.reload()}, 5000) --}}
+{{--</script>--}}
+{{--@endpush--}}
 @section('content')
     <!-- PAGE-HEADER -->
     <div class="page-header">
@@ -96,7 +96,7 @@ setTimeout(() => {location.reload()}, 5000)
                             <a href="{{ route('dashboard.tables.show', $table->id) }}" class="text-white w-100">
                                 <h3 class="card-title">
                                     <span>{{ $table->name }}</span>
-                                    <span class="float-end">{{ $table->status->is(\App\Enums\TableStatus::OPEN) ? $table->carts->moneySum('total_price') : null }}</span>
+                                    <span class="float-end">{{ $table->status->is(\App\Enums\TableStatus::OPEN) ? $table->carts->moneySum('total_price')->minus($table->total_collection) : null }}</span>
                                 </h3>
                             </a>
                         </div>

@@ -23,11 +23,11 @@ Route::name('auth.')->middleware('guest')->group(function (Router $router) {
 
 Route::name('dashboard.')->middleware('auth:web')->group(function (Router $router) {
     $router->get('/', [HomeController::class, 'index'])->name('home');
-    $router->get('/reports', [ReportController::class, 'index'])->name('reports');
+    $router->get('/reports', [ReportController::class, 'index'])->name('reports')->middleware('company.secure');
     $router->post('/move-table/{table}', [TableController::class, 'move'])->name('move-table');
-    $router->resource('/categories', CategoryController::class)->except(['show']);
-    $router->resource('/products', ProductController::class)->except(['show']);
-    $router->resource('/tables', TableController::class);
+    $router->resource('/categories', CategoryController::class)->except(['show'])->middleware('company.secure');
+    $router->resource('/products', ProductController::class)->except(['show'])->middleware('company.secure');
+    $router->resource('/tables', TableController::class)->middleware('company.secure');
     $router->resource('/carts', CartController::class)->only(['store', 'update', 'destroy']);
     $router->resource('/collections', CollectionController::class)->only(['store']);
     $router->resource('/companies', CompanyController::class)->only(['edit', 'update'])->middleware('company.secure');

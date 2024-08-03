@@ -89,6 +89,9 @@ return [
             'general_error' => 'An error occurred.',
             'not_allowed_access' => 'You are not allowed to access this page.',
         ],
+        'general' => [
+            'created_by_user' => '<b class="text-primary">:name</b> added <b class="text-primary">:quantity</b> of <b class="text-primary">:product</b> to the cart.',
+        ],
     ],
     'content' => [
         'category_details' => 'Category Details',
@@ -99,6 +102,7 @@ return [
         'product_collection' => 'Product Collection',
         'user_details' => 'User Details',
         'has_no_product' => 'There is no product.',
+        'table_history' => 'Table History',
         'analysis' => [
             'open_tables_amount' => 'Open Tables Amount',
             'total_sales_amount' => 'Total Sales Amount',
@@ -182,6 +186,6 @@ return [
         'delete' => 'Are you sure you want to delete this record?',
     ],
     'release_announcements' => [
-        '1_0_0' => 'The first version of the Coffee-Managing application has been released! 🎉'
+        '1_0_0' => 'The first version of the Coffee-Managing application has been released! 🎉',
     ],
 ];

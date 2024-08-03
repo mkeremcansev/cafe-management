@@ -39,4 +39,9 @@ class Cart extends BaseOwnableModel
     {
         return $this->belongsTo(TableState::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
