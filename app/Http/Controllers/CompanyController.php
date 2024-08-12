@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
+use Illuminate\Http\RedirectResponse;
 
 class CompanyController extends Controller
 {
@@ -25,5 +26,16 @@ class CompanyController extends Controller
         $company->update($request->validated());
 
         return back();
+    }
+
+    public function startOrEndOfDay(): RedirectResponse
+    {
+        $company = auth()->user()->company;
+
+        $company->update([
+            'start_of_day' => $company->start_of_day === null ? now() : null,
+        ]);
+
+        return back()->with('success', __('words.messages.success.general.updated'));
     }
 }

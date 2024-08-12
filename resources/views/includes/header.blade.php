@@ -1,6 +1,16 @@
 <div class="app-header header sticky">
     <div class="container-fluid main-container">
         <div class="d-flex">
+            @if(auth()->user()->is_owner === true)
+                <div class="start-or-end-of-day-button">
+                    @if(auth()->user()->company->start_of_day === null)
+                        <a href="{{ route('dashboard.company.start-or-end-of-day') }}" class="btn btn-success">@lang('words.buttons.start_day')</a>
+                    @else
+                        <a href="{{ route('dashboard.company.start-or-end-of-day') }}" class="btn btn-danger">@lang('words.buttons.end_day')</a>
+                    @endif
+                </div>
+            @endif
+
             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="#"></a>
             <!-- sidebar-toggle-->
             <a class="logo-horizontal" href="{{ route('dashboard.home') }}">
@@ -20,13 +30,6 @@
                 <div class="navbar navbar-collapse responsive-navbar p-0">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                         <div class="d-flex order-lg-2">
-                            <!-- COUNTRY -->
-                            <!-- SEARCH -->
-                            <!-- Theme-Layout -->
-                            <!-- SHORTCUTS -->
-                            <!-- FULL-SCREEN -->
-                            <!-- CART -->
-                            <!-- Messages-->
                             <div class="dropdown d-md-flex notifications">
                                 <a class="nav-link icon" data-bs-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
@@ -45,7 +48,8 @@
                                                     <i class="fa fa-bullhorn"></i>
                                                 </div>
                                                 <div>
-                                                    <span class="notification-label mb-1">@lang('words.release_announcements.1_0_0')</span>
+                                                    <span
+                                                        class="notification-label mb-1">@lang('words.release_announcements.1_0_0')</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -81,6 +85,18 @@
                                 </div>
                             </div>
                             <!-- Profile -->
+
+                            @if(auth()->user()->is_owner === true)
+                                @if(auth()->user()->company->start_of_day === null)
+                                    <a href="{{ route('dashboard.company.start-or-end-of-day') }}"
+                                       class="btn btn-success start-or-end-of-day-button-mobile ms-3">
+                                        @lang('words.buttons.start_day')
+                                    </a>
+                                @else
+                                    <a href="{{ route('dashboard.company.start-or-end-of-day') }}"
+                                       class="btn btn-danger start-or-end-of-day-button-mobile ms-3">@lang('words.buttons.end_day')</a>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>

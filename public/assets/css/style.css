@@ -14004,6 +14004,9 @@ progress {
 }
 
 @media (max-width: 767.98px) {
+    .start-or-end-of-day-button {
+        display: none !important;
+    }
     .table-responsive-md {
         display: block;
         width: 100%;
@@ -19989,6 +19992,12 @@ small,
 
 .todo-img i {
     padding-bottom: 4px;
+}
+
+@media (min-width: 992px) {
+    .start-or-end-of-day-button-mobile {
+        display: none !important;
+    }
 }
 
 @media (max-width: 767px) {

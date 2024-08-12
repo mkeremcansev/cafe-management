@@ -25,6 +25,7 @@ Route::name('dashboard.')->middleware('auth:web')->group(function (Router $route
     $router->get('/', [HomeController::class, 'index'])->name('home');
     $router->get('/reports', [ReportController::class, 'index'])->name('reports')->middleware('company.secure');
     $router->get('/cache/{company}', [HomeController::class, 'cache'])->name('cache');
+    $router->get('/company/start-or-end-of-day', [CompanyController::class, 'startOrEndOfDay'])->name('company.start-or-end-of-day');
     $router->post('/move-table/{table}', [TableController::class, 'move'])->name('move-table');
     $router->resource('/categories', CategoryController::class)->except(['show'])->middleware('company.secure');
     $router->resource('/products', ProductController::class)->except(['show'])->middleware('company.secure');

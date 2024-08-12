@@ -15,6 +15,11 @@ class Company extends Model
         'email',
         'phone',
         'address',
+        'start_of_day',
+    ];
+
+    protected $casts = [
+        'start_of_day' => 'datetime',
     ];
 
     public function users(): HasMany

@@ -10,7 +10,9 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function __construct(public Table $table, public Collection $collection) {}
+    public function __construct(public Table $table, public Collection $collection)
+    {
+    }
 
     /**
      * Display a listing of the resource.
@@ -28,7 +30,9 @@ class HomeController extends Controller
                 $this->collection->lastMonth()->get()->moneySum('amount')
             )
             ->withLastDaySalesAmount(
-                $this->collection->lastDay()->get()->moneySum('amount')
+                auth()->user()->company->start_of_day === null
+                    ? MoneyService::zero()
+                    : $this->collection->whereBetween('created_at', [auth()->user()->company->start_of_day, now()])->get()->moneySum('amount')
             )
             ->withOpenTablesAmount(
                 $this->table->with('openState.collections')->hasOpenState()->get()->reduce(function ($carry, $openTable) {
