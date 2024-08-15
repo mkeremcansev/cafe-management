@@ -54,7 +54,7 @@ class TableController extends Controller
         return view('pages.table.show')
             ->withTable($table)
             ->withTablesWithoutCurrent($tablesWithoutCurrent)
-            ->withCategories($this->category->with('products')->get());
+            ->withCategories($this->category->with('products')->whereHas('products')->get());
     }
 
     /**
