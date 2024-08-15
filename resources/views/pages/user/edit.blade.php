@@ -35,7 +35,7 @@
                                 <label class="form-label">@lang('words.fields.user.password_confirmation')</label>
                                 <input class="form-control" placeholder="@lang('words.fields.user.password_confirmation')" type="password" name="password_confirmation">
                             </div>
-                            <button class="btn ripple btn-primary" type="submit">@lang('words.buttons.create')</button>
+                            <button class="btn ripple btn-primary" type="submit">@lang('words.buttons.update')</button>
                         </div>
                     </div>
                 </form>
