@@ -1,5 +1,3 @@
-DEMO: https://coffeemanaging.com
-
 Install all the dependencies using composer
 
     composer install
