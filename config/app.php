@@ -89,9 +89,7 @@ return [
     'default_max_company_user' => env('APP_DEFAULT_MAX_COMPANY_USER', 2),
 
     'premium_users' => [
-        'mkeremcansev@gmail.com',
-        'mee.cansev@gmail.com',
-        'hasancyln6699@gmail.com'
+        // user email
     ],
 
     /*
