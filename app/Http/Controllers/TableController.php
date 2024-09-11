@@ -51,8 +51,11 @@ class TableController extends Controller
 
         $tablesWithoutCurrent = $this->table->where('id', '!=', $table->id)->get();
 
+        $history = $table->carts->merge($table->openState->collections)->sortBy('created_at');
+
         return view('pages.table.show')
             ->withTable($table)
+            ->withHistory($history)
             ->withTablesWithoutCurrent($tablesWithoutCurrent)
             ->withCategories($this->category->with('products')->whereHas('products')->get());
     }

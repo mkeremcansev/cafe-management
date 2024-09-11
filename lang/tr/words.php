@@ -95,7 +95,8 @@ return [
             'not_allowed_access' => 'Bu sayfaya erişmeye izniniz yok.',
         ],
         'general' => [
-            'created_by_user' => '<b class="text-primary">:name</b> tarafından <b class="text-primary">:quantity</b> adet <b class="text-primary">:product</b> adlı ürün sepete eklendi.',
+            'created_by_user_cart' => '<b class="text-primary">:name</b> tarafından <b class="text-primary">:quantity</b> adet <b class="text-primary">:product</b> adlı ürün sepete eklendi.',
+            'created_by_user_collection' => '<b class="text-primary">:name</b> tarafından <b class="text-primary">:amount</b> tutarında tahsilat yapıldı.',
         ],
     ],
     'content' => [
@@ -114,7 +115,7 @@ return [
             'last_month_sales_amount' => 'Geçen Ayın Satış Tutarı',
             'last_day_sales_amount' => 'Günlük Satış Tutarı',
             'month_based_sales_amount' => 'Aya Göre Satış Tutarı',
-            "product_based_sales_amount" => "Ürüne Göre Satış Tutarı",
+            'product_based_sales_amount' => 'Ürüne Göre Satış Tutarı',
             'filter_based_sales_amount' => 'Filtreye Göre Satış Tutarı',
             'has_no_filter' => 'Filtre yok.',
         ],

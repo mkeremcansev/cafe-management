@@ -131,13 +131,13 @@
                         @foreach($categories as $category)
                             <div class="card mb-2">
                                 <div class="card-header border-bottom-0" role="tab">
-                                    <a class="accor-style2 collapsed" aria-expanded="false" data-bs-toggle="collapse"
+                                    <a class="accor-style2 @if(session()->get('opened_category_id') !== $category->id) collapsed @endif" aria-expanded="false" data-bs-toggle="collapse"
                                        href="#category-collapse{{ $category->id }}">
                                         <i class="fe fe-plus-circle me-2"></i>
                                         <span>{{ $category->name }}</span>
                                     </a>
                                 </div>
-                                <div class="collapse" id="category-collapse{{ $category->id }}" role="tabpanel">
+                                <div class="collapse @if(session()->get('opened_category_id') === $category->id) show @endif" id="category-collapse{{ $category->id }}" role="tabpanel">
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table table-bordered table-vcenter text-nowrap mb-0">
@@ -356,14 +356,24 @@
                     <div class="card">
                         <div class="card-body">
                             <ul>
-                                @foreach($table->carts as $cart)
-                                    <li class="list-style-1">
-                                        @lang('words.messages.general.created_by_user', [
-                                            'name' => $cart->user->name,
-                                            'quantity' => $cart->quantity,
-                                            'product' => $cart->product->name,
-                                        ])
-                                    </li>
+                                @foreach($history as $historyInstance)
+                                    @if($historyInstance instanceof \App\Models\Collection)
+                                        <li class="list-style-1">
+                                            @lang('words.messages.general.created_by_user_collection', [
+                                                'name' => $historyInstance->user->name,
+                                                'amount' => $historyInstance->amount,
+                                            ])
+                                        </li>
+                                    @elseif($historyInstance instanceof \App\Models\Cart)
+                                        <li class="list-style-1">
+                                            @lang('words.messages.general.created_by_user_cart', [
+                                                'name' => $historyInstance->user->name,
+                                                'quantity' => $historyInstance->quantity,
+                                                'product' => $historyInstance->product->name,
+                                            ])
+                                        </li>
+                                    @endif
+
                                 @endforeach
                             </ul>
                         </div>

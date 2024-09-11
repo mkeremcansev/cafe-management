@@ -95,7 +95,8 @@ return [
             'not_allowed_access' => 'You are not allowed to access this page.',
         ],
         'general' => [
-            'created_by_user' => '<b class="text-primary">:name</b> added <b class="text-primary">:quantity</b> of <b class="text-primary">:product</b> to the cart.',
+            'created_by_user_cart' => '<b class="text-primary">:name</b> added <b class="text-primary">:quantity</b> of <b class="text-primary">:product</b> to the cart.',
+            'created_by_user_collection' => '<b class="text-primary">:name</b> collected <b class="text-primary">:amount</b> amount.',
         ],
     ],
     'content' => [
