@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -17,7 +19,7 @@ class LoginRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @see \Tests\Unit\Requests\LoginRequestTest::all_attributes_must_be_validated_while_a_new_login_session()
      */
     public function rules(): array
     {

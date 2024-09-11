@@ -16,4 +16,9 @@ abstract class TestCase extends BaseTestCase
 
         $this->actingAs(User::factory()->create(['is_owner' => true]));
     }
+
+    protected function getAccessiblePropertyForTesting(object $class, string $propertyName): mixed
+    {
+        return (fn () => $class->{$propertyName})->call($class);
+    }
 }
