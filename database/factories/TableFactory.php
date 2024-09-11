@@ -17,7 +17,10 @@ class TableFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory()->lazy(),
+            'company_id' => \App\Models\Company::factory()->lazy(),
+            'name' => $this->faker->word,
+            'slug' => $this->faker->slug,
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\TableStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class TableStateFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'table_id' => \App\Models\Table::factory()->lazy(),
+            'company_id' => \App\Models\Company::factory()->lazy(),
+            'user_id' => \App\Models\User::factory()->lazy(),
+            'status' => TableStatus::getRandomCase(),
         ];
     }
 }
