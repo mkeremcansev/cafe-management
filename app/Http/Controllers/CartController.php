@@ -39,7 +39,9 @@ class CartController extends Controller
         if ($cart !== null && $cart?->is_before_collection === false) {
             $cart->increment('quantity', $request->quantity);
 
-            return back()->with('success', __('words.messages.success.cart.updated'));
+            return back()
+                ->with('success', __('words.messages.success.cart.updated'))
+                ->with('opened_category_id', $product->category_id);
         }
 
         $this->cart->create([
@@ -49,7 +51,9 @@ class CartController extends Controller
             'price' => $product->price,
         ]);
 
-        return back()->with('success', __('words.messages.success.cart.created'));
+        return back()
+            ->with('success', __('words.messages.success.cart.created'))
+            ->with('opened_category_id', $product->category_id);
     }
 
     /**
