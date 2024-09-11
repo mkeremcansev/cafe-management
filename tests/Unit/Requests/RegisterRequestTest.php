@@ -1,29 +1,22 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Tests\Unit\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\RegisterRequest;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
-class RegisterRequest extends FormRequest
+class RegisterRequestTest extends TestCase
 {
-    protected $stopOnFirstFailure = true;
-
     /**
-     * Determine if the user is authorized to make this request.
+     * @see \App\Http\Requests\RegisterRequest::rules()
      */
-    public function authorize(): bool
+    #[Test]
+    public function all_attributes_must_be_validated_while_a_creating_a_new_user(): void
     {
-        return true;
-    }
+        $request = new RegisterRequest();
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @see \Tests\Unit\Requests\RegisterRequestTest::all_attributes_must_be_validated_while_a_creating_a_new_user()
-     */
-    public function rules(): array
-    {
-        return [
+        $this->assertSame([
             'company_name' => ['required', 'string', 'max:255'],
             'company_email' => ['required', 'string', 'email', 'max:255'],
             'company_phone' => ['required', 'string', 'max:255'],
@@ -32,6 +25,8 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'password_confirmation' => ['required', 'string', 'min:8'],
-        ];
+        ], $request->rules());
+
+        $this->assertTrue($this->getAccessiblePropertyForTesting($request, 'stopOnFirstFailure'));
     }
 }
