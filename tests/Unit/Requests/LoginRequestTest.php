@@ -16,7 +16,7 @@ class LoginRequestTest extends TestCase
     {
         $request = new LoginRequest();
 
-        $this->assertSame([
+        $this->assertEquals([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
         ], $request->rules());

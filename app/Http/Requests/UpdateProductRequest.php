@@ -6,6 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductRequest extends FormRequest
 {
+
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -17,7 +20,7 @@ class UpdateProductRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @see \Tests\Unit\Requests\UpdateProductRequestTest::all_attributes_must_be_validated_while_a_updating_product()
      */
     public function rules(): array
     {

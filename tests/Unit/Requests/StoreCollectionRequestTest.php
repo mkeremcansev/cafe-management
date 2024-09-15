@@ -1,33 +1,25 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Tests\Unit\Requests;
 
 use App\Enums\CollectionMethod;
 use App\Enums\CollectionType;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\StoreCollectionRequest;
 use Illuminate\Validation\Rule;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
-class StoreCollectionRequest extends FormRequest
+class StoreCollectionRequestTest extends TestCase
 {
-
-    protected $stopOnFirstFailure = true;
-
     /**
-     * Determine if the user is authorized to make this request.
+     * @see \App\Http\Requests\StoreCollectionRequest::rules()
      */
-    public function authorize(): bool
+    #[Test]
+    public function all_attributes_must_be_validated_while_a_creating_collection(): void
     {
-        return true;
-    }
+        $request = new StoreCollectionRequest();
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @see \Tests\Unit\Requests\StoreCollectionRequestTest::all_attributes_must_be_validated_while_a_creating_collection()
-     */
-    public function rules(): array
-    {
-        return [
+        $this->assertEquals([
             'table_id' => [
                 'required',
                 'integer',
@@ -62,15 +54,8 @@ class StoreCollectionRequest extends FormRequest
                 'integer',
                 'min:1',
             ],
-        ];
-    }
+        ], $request->rules());
 
-    protected function prepareForValidation(): void
-    {
-        if ((int) $this->type === CollectionType::MANUEL->value) {
-            $this->merge([
-                'amount' => (int) clean_masked_money($this->amount),
-            ]);
-        }
+        $this->assertTrue($this->getAccessiblePropertyForTesting($request, 'stopOnFirstFailure'));
     }
 }

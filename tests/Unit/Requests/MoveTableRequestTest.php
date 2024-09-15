@@ -16,7 +16,7 @@ class MoveTableRequestTest extends TestCase
     {
         $request = new MoveTableRequest();
 
-        $this->assertSame([
+        $this->assertEquals([
             'table_id' => ['required', 'integer', 'exists:tables,id'],
         ], $request->rules());
 

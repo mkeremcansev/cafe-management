@@ -6,6 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTableRequest extends FormRequest
 {
+
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -17,7 +20,7 @@ class StoreTableRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @see \Tests\Unit\Requests\StoreTableRequestTest::all_attributes_must_be_validated_while_a_creating_table()
      */
     public function rules(): array
     {
